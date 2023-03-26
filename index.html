@@ -60,7 +60,7 @@
 			</ul>
 		</nav>
 		<nav>
-			总文章数 1
+			总文章数 2
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -151,6 +151,71 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-”2023-0326-领航面试题之验证码设置“" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/03/26/%E2%80%9D2023-0326-%E9%A2%86%E8%88%AA%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B9%8B%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AE%BE%E7%BD%AE%E2%80%9C/">”领航面试题之验证码设置“</a>
+    </h1>
+  
+
+        
+        <a href="/2023/03/26/%E2%80%9D2023-0326-%E9%A2%86%E8%88%AA%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B9%8B%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AE%BE%E7%BD%AE%E2%80%9C/" class="archive-article-date">
+  	<time datetime="2023-03-26T04:07:18.235Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>记录在设置验证码时遇到的问题</p>
+<h3 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h3><h2 id="先定义一个字符串数组，再定义一个空字符数组用于储存随机数，使用循环拼接并返回字符；代码如下：学习到的细节"><a href="#先定义一个字符串数组，再定义一个空字符数组用于储存随机数，使用循环拼接并返回字符；代码如下：学习到的细节" class="headerlink" title="先定义一个字符串数组，再定义一个空字符数组用于储存随机数，使用循环拼接并返回字符；代码如下：学习到的细节"></a>先定义一个字符串数组，再定义一个空字符数组用于储存随机数，使用循环拼接并返回字符；<br>代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">  &lt;tr&gt;</span><br><span class="line">  &lt;td&gt;验证码：&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;&lt;input type=<span class="string">&quot;text&quot;</span> placeholder=<span class="string">&quot;请输入四位验证码&quot;</span> id=<span class="string">&quot;inputcode&quot;</span>&gt;&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;&lt;div&gt;&lt;/div&gt;&lt;/td&gt;</span><br><span class="line">  &lt;td&gt;&lt;span&gt;刷新&lt;/span&gt;&lt;script&gt;<span class="comment">//获取随机数</span></span><br><span class="line">   <span class="type">const</span> <span class="variable">div</span> <span class="operator">=</span> document.querySelector(<span class="string">&#x27;div&#x27;</span>)</span><br><span class="line">   span = document.querySelector(<span class="string">&#x27;span&#x27;</span>)</span><br><span class="line">   <span class="comment">//随机数方法</span></span><br><span class="line">   function <span class="title function_">randomNum</span><span class="params">()</span>&#123;</span><br><span class="line">     <span class="comment">//字符串数组</span></span><br><span class="line">     <span class="type">const</span> <span class="variable">strArr</span> <span class="operator">=</span> <span class="string">&#x27;qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM&#x27;</span></span><br><span class="line">     <span class="comment">//定义一个空字符串</span></span><br><span class="line">     let str=<span class="string">&#x27;&#x27;</span></span><br><span class="line">     <span class="comment">//循环拼接字符串</span></span><br><span class="line">     <span class="keyword">for</span>(<span class="type">let</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i&lt;<span class="number">4</span> ;i++)&#123;</span><br><span class="line">       str += strArr.charAt(Math.round(Math.random() * <span class="number">52</span>))</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">//返回拼接字符串</span></span><br><span class="line">     <span class="keyword">return</span> str</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">//测试</span></span><br><span class="line">   console.log(randomNum())</span><br><span class="line">   <span class="comment">//给盒子添加随机字符串</span></span><br><span class="line">   div.innerText = randomNum()</span><br><span class="line">   <span class="comment">//点击刷新</span></span><br><span class="line">   span.onclick = _ =&gt;&#123;</span><br><span class="line">       div.innerText = randomNum()</span><br><span class="line">   &#125;</span><br><span class="line"> &lt;/script&gt;&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>学习到的细节</h2><h2 id="快捷写法："><a href="#快捷写法：" class="headerlink" title="快捷写法："></a>快捷写法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">span.onclick = _ =&gt;&#123;</span><br><span class="line">                div.innerText = randomNum()</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure></h2><p>[特殊问题]（<a target="_blank" rel="noopener" href="http://t.csdn.cn/TWENy%EF%BC%89">http://t.csdn.cn/TWENy）</a>    解决Cannot set properties of null (setting ‘xxx‘)的问题</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/03/26/%E2%80%9D2023-0326-%E9%A2%86%E8%88%AA%E9%9D%A2%E8%AF%95%E9%A2%98%E4%B9%8B%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AE%BE%E7%BD%AE%E2%80%9C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-“2023-0324-关于新建的站”" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
