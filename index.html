@@ -199,222 +199,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="—-变量"><a href="#—-变量" class="headerlink" title="—.变量"></a>—.变量</h1><hr>
-<h3 id="1-let"><a href="#1-let" class="headerlink" title="1.let"></a>1.let</h3><p>1.变量不能重复声明。</p>
-<p>2.块级作用域。</p>
-<p>3.不存在变量提升。</p>
-<p>4.不影响作用域链。</p>
-<p>举例：div换色案例，用var i&#x3D;0遍历div绑定点击换色函数不可，用let成功。（或用this.style.color）</p>
-<p>原因：遍历数组越界（执行后为i&#x3D;3，而数组序号最大为2），由于点击事件为异步任务，当遍历函数定义时实现回调函数未执行，而当点击触发回调函数时i已经为3，由于找不到序号为3的数组元素，此时向函数外层作用域寻找，最后找到window.i，无法修改div元素。</p>
-<hr>
-<h3 id="2-const"><a href="#2-const" class="headerlink" title="2.const"></a>2.const</h3><p>1.一定要赋初值。</p>
-<p>2.一般常量使用大写（潜规则）。</p>
-<p>3.常量的值不可修改。</p>
-<p>4.块级作用域。</p>
-<p>5.对于数组和对象的元素修改，不算做对常量的修改，不会报错。</p>
-<hr>
-<h3 id="3-变量的解构赋值"><a href="#3-变量的解构赋值" class="headerlink" title="3.变量的解构赋值"></a>3.变量的解构赋值</h3><p>定义：ES允许按照一定模式从数组和对象中提取值，对变量进行赋值，这被称为解构赋值。</p>
-<p>1.数组的解构：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const F3 = [&#x27;浩男学长&#x27;，&#x27;富春老大&#x27;,&#x27;猴佬&#x27;]；</span><br><span class="line">let[&#x27;quan&#x27;,&#x27;boss&#x27;,&#x27;monkeyhbd&#x27;] = F3;</span><br><span class="line">console.log(quan);</span><br><span class="line">console.log(boss);</span><br><span class="line">console.log(monkey);</span><br></pre></td></tr></table></figure>
-
-
-
-<p>结果：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">浩男学长</span><br><span class="line">富春老大</span><br><span class="line">猴佬</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>对象的解构:</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const hou =&#123;</span><br><span class="line"> name:&#x27;monkeyhbd&#x27;,</span><br><span class="line"> age:&#x27;88888888&#x27;,</span><br><span class="line"> handsome: function()&#123;</span><br><span class="line"> console.log(&quot;我可以全栈&quot;) ;</span><br><span class="line"> &#125;//类同结构体</span><br><span class="line">&#125;；</span><br><span class="line">let&#123;name，age,handsome&#125;=hou;</span><br><span class="line"> console.log(name) ;</span><br><span class="line">  console.log(age) ;</span><br><span class="line">   console.log(handsome) ;//就是新定义变量一一对应了</span><br></pre></td></tr></table></figure>
-
-
-
-<p>结果：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">monkeyhbd</span><br><span class="line">88888888</span><br><span class="line">f()&#123;...&#125;</span><br></pre></td></tr></table></figure>
-
-<p>作用：避免了例如hou.handsome等通过hou来实现调用，每次都有<mark>hou.</mark>，解构后就可以单独使用，简化了代码。</p>
-<hr>
-<h3 id="4-模板字符串"><a href="#4-模板字符串" class="headerlink" title="4.模板字符串"></a>4.模板字符串</h3><p>是什么：ES6 引入新的字符串的方式 <mark>&#96;&#96;</mark> ,’’, “”</p>
-<p>1.声明</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let str=`yuanshen`;</span><br><span class="line">console(str,type str);</span><br></pre></td></tr></table></figure>
-
-<p>2.内容中可以直接出现换行符  (不用 <mark>&#96;&#96;</mark>将报错)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let str =`&lt;ul&gt;</span><br><span class="line">          &lt;li&gt;a&lt;/li&gt;</span><br><span class="line">          &lt;li&gt;b&lt;/li&gt;</span><br><span class="line">          &lt;/ul&gt;`</span><br></pre></td></tr></table></figure>
-
-<p>3.变量拼接</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let joker=&#x27;lllry&#x27;;</span><br><span class="line">let out = `$&#123;joker&#125;是我心中最搞笑的人`;</span><br><span class="line">console.log(out);</span><br><span class="line">直接输出: lllry是我心中最搞笑的人</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="5-对象的简化写法"><a href="#5-对象的简化写法" class="headerlink" title="5.对象的简化写法"></a>5.对象的简化写法</h3><p>ES6允许在大括号里面，直接写入变量和函数，作为对象的属性和方法，这样的书写更加简洁。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let name =&#x27;aaa&#x27;;</span><br><span class="line">let change = function()&#123;</span><br><span class="line">console.log(&#x27;bbb&#x27;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const school=&#123;</span><br><span class="line">name,</span><br><span class="line">change,</span><br><span class="line">imporve()&#123;</span><br><span class="line">console(&quot;ccc&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="二-函数"><a href="#二-函数" class="headerlink" title="二.函数"></a>二.函数</h1><h3 id="1-箭头函数以及声明特点"><a href="#1-箭头函数以及声明特点" class="headerlink" title="1.箭头函数以及声明特点"></a>1.箭头函数以及声明特点</h3><p>ES6允许使用箭头<mark>（&#x3D;&gt;）</mark>定义函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">原：</span><br><span class="line">et fn = function(a,b)&#123;</span><br><span class="line">   return a+b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ES6:</span><br><span class="line">let fn = (a,b) =&gt;&#123;</span><br><span class="line">    return a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>调用:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let result = fn(1,2);</span><br></pre></td></tr></table></figure>
-
-<p><mark>注意：</mark></p>
-<p>1.this是静态的（不因call，apply，bind改变），this始终指向函数声明时所在作用域下的this的值。</p>
-<p>2.不能作为构造实例化对象（一个函数，通过传参来创造对象）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let Person = (name,age) =&gt;&#123;</span><br><span class="line">this.name = name</span><br><span class="line">this.age=age;</span><br><span class="line">&#125;</span><br><span class="line">let me = new Person(&#x27;luo&#x27;,18);</span><br></pre></td></tr></table></figure>
-
-<p>以上代码会报错Person不是一个构造体；</p>
-<p>3.不能使用arguments变量。</p>
-<p>4.箭头函数的简写：</p>
-<p>（1）省略小括号：当形参有且只有一个的时候。</p>
-<p>（2）省略花括号：当代码体只有一条语句的时候，此时return语句必须省略，而且语句的执行结果就是函数的返回值。</p>
-<hr>
-<h3 id="2-箭头函数实践"><a href="#2-箭头函数实践" class="headerlink" title="2.箭头函数实践"></a>2.箭头函数实践</h3><h4 id="例子1：点击div俩秒后切换颜色："><a href="#例子1：点击div俩秒后切换颜色：" class="headerlink" title="例子1：点击div俩秒后切换颜色："></a>例子1：点击div俩秒后切换颜色：</h4><p>第一种方法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let ad = document.getELementById(&#x27;ad&#x27;);// 获取元素 </span><br><span class="line">ad.addEventListener(&quot;click&quot;,function()&#123;</span><br><span class="line">setTimeOut(() =&gt; &#123;</span><br><span class="line">this.style.background = &#x27;pink&#x27;;</span><br><span class="line">&#125;,2000);</span><br><span class="line">&#125;)</span><br><span class="line">注意：如果不使用箭头函数则会报错，具体原因见下	</span><br></pre></td></tr></table></figure>
-
-<p>第二种方法：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let ad = document.getELementById(&#x27;ad&#x27;);// 获取元素 </span><br><span class="line">ad.addEventListener(&quot;click&quot;,function()&#123;</span><br><span class="line">let _this=this;</span><br><span class="line">setTimeOut(function()&#123;</span><br><span class="line">_this.style.background = &#x27;pink&#x27;;</span><br><span class="line">&#125;,2000);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>对于俩个解决方法的理解：</p>
-<p>1.为什么对于方法一不使用箭头函数则会报错：因为this默认指向当前作用域最近的量，setTimeOut是window对象下的方法，所以this会指向window而不是事件监听的ad；对于第一种方法，由于使用了箭头函数，箭头函数的this是静态的（不因call，apply，bind改变），this始终指向函数声明时所在作用域下的this的值，即指向了ad，所以能实现切换颜色的操作。</p>
-<p>2.对于方法二，先使用let定义 _this在外围保存了this的值,这个this指向ad，当setTimeOut函数内部找不到 _this时就会向函数外围寻找，最后就能得到保存的指向ad的this。</p>
-<p>3.function是谁调用了函数那么this就指向谁（window），而箭头函数this始终指向作用域的this（ad）。</p>
-<hr>
-<h4 id="例子2：从数组中返回偶数的元素"><a href="#例子2：从数组中返回偶数的元素" class="headerlink" title="例子2：从数组中返回偶数的元素"></a>例子2：从数组中返回偶数的元素</h4><p><mark>首先对filter做一个解释：即创建一个新的数组，数组中的元素是通过检查指定数组中符合条件的所有元素；</mark></p>
-<p>方法一(老方法）：</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const arr[&#x27;1&#x27;,&#x27;6&#x27;,&#x27;9&#x27;,&#x27;10&#x27;,&#x27;100&#x27;,&#x27;25&#x27;];</span><br><span class="line">const result = arr.filter(function(item)&#123;</span><br><span class="line">if(item % 2 === 0)&#123;</span><br><span class="line">return true;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">return false;</span><br><span class="line">&#125; </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p> 方法二（新方法）：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const arr[&#x27;1&#x27;,&#x27;6&#x27;,&#x27;9&#x27;,&#x27;10&#x27;,&#x27;100&#x27;,&#x27;25&#x27;];</span><br><span class="line">const result = arr.filter(item =&gt; item % 2 ===0);</span><br></pre></td></tr></table></figure>
-
-<p><mark> 总结：</mark>箭头函数适合与this无关的回调，定时器，数组的方法回调；箭头函数不适合与this有关的回调，是事件回调，对象的方法。</p>
-<hr>
-<h3 id="3-函数参数的默认值设置"><a href="#3-函数参数的默认值设置" class="headerlink" title="3.函数参数的默认值设置"></a>3.函数参数的默认值设置</h3><p>1.设置原则及使用方法同c++，不赘述；</p>
-<p>2.<mark>重点：</mark>与解构赋值结合：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function connect(&#123;host=&#x27;127.0.0.1&#x27;,username,password,port&#125;)&#123;</span><br><span class="line">console.log(host);</span><br><span class="line">console.log(username);</span><br><span class="line">console.log(password);</span><br><span class="line">console.log(port);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">connect(&#123;</span><br><span class="line">host: &#x27;atguigu.com&#x27;,</span><br><span class="line">username: &#x27;root&#x27;,</span><br><span class="line">password:&#x27;root&#x27;,</span><br><span class="line">port:3306</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="4-rest参数"><a href="#4-rest参数" class="headerlink" title="4.rest参数"></a>4.rest参数</h3><p>ES6引入rest参数，用于获取参数的实参，用来代替 arguments。</p>
-<p>先看看arguments是如何获取实参：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function date()&#123;</span><br><span class="line"> console.log(arguments);</span><br><span class="line">&#125;</span><br><span class="line">date(&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;);//结果是对象</span><br><span class="line">最后会输出a，b，c，即arguments获取了实参；</span><br></pre></td></tr></table></figure>
-
-<p>rest获取实参：…args其实就等同于用不完的参数都给它了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function date(...args)&#123;</span><br><span class="line"> console.log(args);</span><br><span class="line">&#125;</span><br><span class="line">date(&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;);//结果是数组，可以使用数组的API，例如filter some every map</span><br></pre></td></tr></table></figure>
-
-<p>注意rest参数必须放在参数最后：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function date(a,b,...args)&#123;</span><br><span class="line"> console.log(a);</span><br><span class="line">  console.log(b);</span><br><span class="line"> console.log(args);</span><br><span class="line">&#125;</span><br><span class="line">date(1，2，3，4，5，6);//结果是数组，可以使用数组的API，例如filter some every map</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h1 id="三-ES6扩展运算符"><a href="#三-ES6扩展运算符" class="headerlink" title="三 .ES6扩展运算符"></a>三 .ES6扩展运算符</h1><h3 id="1-扩展运算符的介绍"><a href="#1-扩展运算符的介绍" class="headerlink" title="1.扩展运算符的介绍"></a>1.扩展运算符的介绍</h3><p><mark>…</mark>扩展运算符能将<mark>数组</mark>转化为逗号分隔的<mark>参数序列</mark></p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const F3 = [&#x27;浩男学长&#x27;，&#x27;富春老大&#x27;,&#x27;猴佬&#x27;]；</span><br><span class="line">function linghang()&#123;</span><br><span class="line">console.log(arguments);</span><br><span class="line">&#125;</span><br><span class="line">linghang(...F3);//等同linghang（&#x27;浩男学长&#x27;，&#x27;富春老大&#x27;,&#x27;猴佬&#x27;）;</span><br></pre></td></tr></table></figure>
-
-<p>与rest参数相对比：rest参数声明放在函数声明形参的位置，扩展运算符放在函数调用的参数的位置。</p>
-<hr>
-<h3 id="2-扩展运算符的运用"><a href="#2-扩展运算符的运用" class="headerlink" title="2.扩展运算符的运用"></a>2.扩展运算符的运用</h3><p>1.数组的合并：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const kuaizi = [&#x27;wangtaili&#x27;,&#x27;xiaoyang&#x27;];</span><br><span class="line">const fenghuang = [&#x27;linghua&#x27;,&#x27;zengyi&#x27;];</span><br><span class="line">const zuixuanpingguo = kuaizi.concat(fenghuang);//ES5</span><br><span class="line">const zuixuanpingguo = [...kuaizi,...fenghuang];//ES6扩展运算符</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>数组的克隆</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const kuaizi = [&#x27;wangtaili&#x27;,&#x27;xiaoyang&#x27;];</span><br><span class="line">const xiongdi = [...kuaizi];</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>3.将伪数组转为真正数组</p>
-<p><strong>对伪数组做一个介绍：</strong>详情见<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43606158/article/details/99706350?ops_request_misc=%7B%22request_id%22:%22168221158816800215074384%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=168221158816800215074384&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-99706350-null-null.142%5Ev86%5Ewechat,239%5Ev2%5Einsert_chatgpt&utm_term=%E4%BC%AA%E6%95%B0%E7%BB%84&spm=1018.2226.3001.4187">伪数组是什么？伪数组与数组的区别，将伪数组变成真数组。</a></p>
-<p>伪数组我们可以理解为类似数组的一个集合，我们常见的有俩个，一个是<strong>arguments</strong>还有一个是<strong>DOM的children属性，获取回来的子节点集合</strong>。他们与数组一样，具有索引(下标)和length属性。可以通过for循环写循环语句去循环遍历。</p>
-<p>伪数组与数组的区别：<br>伪数组与数组的区别就是它们的_proto_区别，<br>普通数组有很多数组的方法，比如说push，shift，map等等</p>
-<p>转换：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const divs = document.querySelectorAll(&#x27;div&#x27;);</span><br><span class="line">const divarr = [...divs];//arguments</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="四-Symbol-详见详解Symbol（自定义值，内置值）——-小小的Symbol，大大的学问"><a href="#四-Symbol-详见详解Symbol（自定义值，内置值）——-小小的Symbol，大大的学问" class="headerlink" title="四.Symbol 详见详解Symbol（自定义值，内置值）——-小小的Symbol，大大的学问"></a>四.Symbol 详见<a target="_blank" rel="noopener" href="https://blog.csdn.net/fesfsefgs/article/details/108354248?ops_request_misc=%7B%22request_id%22:%22168233499616800227446689%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=168233499616800227446689&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-108354248-null-null.142%5Ev86%5Ewechat,239%5Ev2%5Einsert_chatgpt&utm_term=Symbol%E7%9A%84%E5%86%85%E7%BD%AE%E5%80%BC&spm=1018.2226.3001.4187">详解Symbol（自定义值，内置值）——-小小的Symbol，大大的学问</a></h1><h3 id="1-Symbol的介绍与创建"><a href="#1-Symbol的介绍与创建" class="headerlink" title="1.Symbol的介绍与创建"></a>1.Symbol的介绍与创建</h3><p>ES6引入了一种新的数据原始数据类型 Symbol，表示独一无二的值。它是Js语言的第七种数据类型，是一种类似于字符串的数据类型。</p>
-<p><strong>Symbol特点</strong>：</p>
-<p>1）Symbol的值是唯一的，用来解决命名冲突的问题</p>
-<p>2）Symbol 值不能与其他数据进行运算</p>
-<p>3）Symbol定义的对象属性不能用for…in循环遍历，但是可以使用Reflect.ownKeys来获取对象的所有键名</p>
-<p>创建Symbol</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let s = Symbol(&#x27;lllry&#x27;);</span><br><span class="line">let s2 = Symbol(&#x27;lllry&#x27;);//每次都会创建一个新Symbol</span><br><span class="line">let s3 = Symbol.for(&#x27;lllry&#x27;);//Symbol.for并不是每次都会创建一个Symbol，它会首先检查给定的key是否已经在注册表注册了，如果没有再创建。</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-给对象添加Symbol-类型的属性"><a href="#2-给对象添加Symbol-类型的属性" class="headerlink" title="2.给对象添加Symbol 类型的属性"></a>2.给对象添加Symbol 类型的属性</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">第一种方法：（up down）</span><br><span class="line">let game&#123;...&#125;//内含一连串代码</span><br><span class="line">//声明一个对象</span><br><span class="line">let methods = &#123;</span><br><span class="line">up: Symbol();</span><br><span class="line">down: Symbol();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">game[methods.up] = function()&#123;</span><br><span class="line">console.log(&quot;我可以改变形状&quot;)；</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">game[methods.up] = function&#123;</span><br><span class="line">console.log(&quot;我可以快速下降&quot;)；</span><br><span class="line"></span><br><span class="line">  第二种方法：</span><br><span class="line">  let youxi = &#123;</span><br><span class="line">name: &#x27;wolfkill&#x27;;</span><br><span class="line">[Symbol(&#x27;say&#x27;)]: function()&#123;</span><br><span class="line"> console.log(&#x27;killmyself&#x27;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">注意：这里Symbol（）一定要用括号括起来，因为它是动态的，如果只写say：则可以因为它是静态的。</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="3-Symbol的内置属性"><a href="#3-Symbol的内置属性" class="headerlink" title="3.Symbol的内置属性"></a>3.Symbol的内置属性</h3><p><b>除了定义自己使用的Symbol值以外，ES6还提供的11个内置的Symbol值，指向语言内部使用</b></p>
-<table>
-<thead>
-<tr>
-<th align="center"><strong>内置Symbol的值</strong></th>
-<th align="center"><strong>调用时机</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">Symbol.hasInstance</td>
-<td align="center">当其他对象使用 instanceof 运算符，判断是否为该对象的实例时，会调用这个方法</td>
-</tr>
-<tr>
-<td align="center">Symbol.isConcatSpreadable</td>
-<td align="center">对象的 Symbol.isConcatSpreadable 属性等于的是一个布尔值，表示该对象用于 Array.prototype.concat()时，是否可以展开。</td>
-</tr>
-<tr>
-<td align="center">Symbol.species</td>
-<td align="center">创建衍生对象时，会使用该属性</td>
-</tr>
-<tr>
-<td align="center">Symbol.match</td>
-<td align="center">当执行 str.match(myObject) 时，如果该属性存在，会调用它，返回该方法的返回值。</td>
-</tr>
-<tr>
-<td align="center">Symbol.replace</td>
-<td align="center">当该对象被 str.replace(myObject)方法调用时，会返回该方法的返回值。</td>
-</tr>
-<tr>
-<td align="center">Symbol.split</td>
-<td align="center">当该对象被 str. split (myObject)方法调用时，会返回该方法的返回值。</td>
-</tr>
-<tr>
-<td align="center">Symbol.iterator</td>
-<td align="center">对象进行 for…of 循环时，会调用 Symbol.iterator 方法，返回该对象的默认遍历器</td>
-</tr>
-<tr>
-<td align="center">Symbol.toPrimitive</td>
-<td align="center">该对象被转为原始类型的值时，会调用这个方法，返回该对象对应的原始类型值。</td>
-</tr>
-<tr>
-<td align="center">Symbol. toStringTag</td>
-<td align="center">在该对象上面调用 toString 方法时，返回该方法的返回值</td>
-</tr>
-<tr>
-<td align="center">Symbol. unscopables</td>
-<td align="center">该对象指定了使用 with 关键字时，哪些属性会被 with环境排除。</td>
-</tr>
-<tr>
-<td align="center">Symbol.search</td>
-<td align="center">当该对象被 str. search (myObject)方法调用时，会返回该方法的返回值。</td>
-</tr>
-</tbody></table>
-<p><strong>尚硅谷有举例使用方法，见ES6第17节,或见标题链接</strong></p>
-<hr>
-<h1 id="五-迭代器"><a href="#五-迭代器" class="headerlink" title="五 .迭代器"></a>五 .<a target="_blank" rel="noopener" href="https://juejin.cn/post/7106763367674544158">迭代器</a></h1><h3 id="1-迭代器介绍"><a href="#1-迭代器介绍" class="headerlink" title="1.迭代器介绍"></a>1.迭代器介绍</h3><p>迭代器（Iterator）是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署Iterator接口，就可以完成遍历操作。</p>
-<p>1）ES6创造了一种新的遍历命令for…of循环，Iteartor接口主要提供for…of消费</p>
-<p>2）原生具备iteator接口的数据（可用for…of遍历）</p>
-<p>a） Array</p>
-<p>b） Arguments</p>
-<p>c） Set</p>
-<p>d） Map</p>
-<p>e） String</p>
-<p>f）TypedArray</p>
-<p>g） NodeList</p>
-<p>3）工作原理</p>
-<p>a） 创建一个指针对象，指向当前数据结构的起始位置</p>
-<p>b） 第一次调用对象的next方法，指针自动指向数据结构的第一个成员</p>
-<p>c） 接下来不断调用next方法，指针一直往后移动，直到指向最后一个成员</p>
-<p>d） 每调用next方法返回一个包含value和done属性的对象</p>
-<p><strong>注意：需要自定义遍历数据时，要想到迭代器</strong></p>
-<p>这里还涉及到for…in 返回键名</p>
-<p>for …of返回键值</p>
-<hr>
-<h3 id="2-迭代器应用-自定义遍历数据"><a href="#2-迭代器应用-自定义遍历数据" class="headerlink" title="2.迭代器应用-自定义遍历数据"></a>2.迭代器应用-自定义遍历数据</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//声明一个对象</span><br><span class="line">const banji = &#123;</span><br><span class="line">name：&quot;zhongjiyiban&quot;,</span><br><span class="line">stus:[</span><br><span class="line">&#x27;xiaoming&#x27;,</span><br><span class="line">&#x27;xiaoning&#x27;,</span><br><span class="line">&#x27;xiaotian&#x27;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line">//遍历这个对象</span><br><span class="line">for(let v of banji)&#123;</span><br><span class="line">console.log(v);</span><br><span class="line">&#125;</span><br><span class="line">发现报错，Uncaught TypeError：banji is not iterator</span><br></pre></td></tr></table></figure>
-
-<p>修改：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">//声明一个对象</span><br><span class="line">const banji = &#123;</span><br><span class="line">name：&quot;zhongjiyiban&quot;,</span><br><span class="line">stus:[</span><br><span class="line">&#x27;xiaoming&#x27;,</span><br><span class="line">&#x27;xiaoning&#x27;,</span><br><span class="line">&#x27;xiaotian&#x27;</span><br><span class="line">],</span><br><span class="line">[Symbol.iterator]()&#123;</span><br><span class="line">//索引变量</span><br><span class="line">let index = 0;</span><br><span class="line">let index=0;</span><br><span class="line">let _this=this;</span><br><span class="line">return&#123;</span><br><span class="line">   next:function()&#123;</span><br><span class="line">        if(index&lt;this.stus.length)&#123;</span><br><span class="line">        const result = &#123;value:_this.stus[index],done:false&#125;;</span><br><span class="line">        index++;</span><br><span class="line">        return result;</span><br><span class="line">        &#125;esle&#123;</span><br><span class="line">        return&#123;value:undefined,done:ture&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;;</span><br><span class="line">//遍历这个对象</span><br><span class="line">for(let v of banji)&#123;</span><br><span class="line">console.log(v);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="六-生成器"><a href="#六-生成器" class="headerlink" title="六.生成器"></a>六.生成器</h1><h3 id="1-生成器函数声明与调用"><a href="#1-生成器函数声明与调用" class="headerlink" title="1.生成器函数声明与调用"></a>1.生成器函数声明与调用</h3>
+        <h2 id="对ES6学习的理解-—-变量"><a href="#对ES6学习的理解-—-变量" class="headerlink" title="对ES6学习的理解# —.变量"></a>对ES6学习的理解<br>
+        
       
 
 
@@ -541,7 +327,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/03/30/%E2%80%9C20230330%E9%A2%86%E8%88%AA%E9%9D%A2%E8%AF%95%E9%A2%98%E6%9C%89%E5%85%B3%E6%BB%91%E5%9D%97%E6%95%B0%E5%80%BC%E3%80%81%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88%E3%80%81%E7%9C%81%E5%B8%82%E8%81%94%E5%8A%A8%E4%BA%8C%E7%BA%A7%E8%8F%9C%E5%8D%95%E2%80%9D/">“20230330领航面试题有关滑块数值、图片预览、省市联动二级菜单”（验证码问题在0326的文章）</a>
+      <a class="article-title" href="/2023/03/30/%E2%80%9C20230330%E9%A2%86%E8%88%AA%E9%9D%A2%E8%AF%95%E9%A2%98%E6%9C%89%E5%85%B3%E6%BB%91%E5%9D%97%E6%95%B0%E5%80%BC%E3%80%81%E5%9B%BE%E7%89%87%E9%A2%84%E8%A7%88%E3%80%81%E7%9C%81%E5%B8%82%E8%81%94%E5%8A%A8%E4%BA%8C%E7%BA%A7%E8%8F%9C%E5%8D%95%E2%80%9D/">“20230330领航面试题有关滑块数值、图片预览、省市联动二级菜单”</a>
     </h1>
   
 
@@ -554,15 +340,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-滑块数值显示："><a href="#1-滑块数值显示：" class="headerlink" title="1.滑块数值显示："></a>1.滑块数值显示：</h2> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//range滑块显示为数字</span><br><span class="line">            function change()&#123;</span><br><span class="line">            var value = document.getElementById(&#x27;range&#x27;).value;</span><br><span class="line">            document.getElementById(&#x27;value&#x27;).innerHTML = value;</span><br><span class="line">            &#125;//先在滑块设置时把oninput和onchange事件都给上chang（）函数，一旦活动滑块就调用这个函数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-图片预览："><a href="#2-图片预览：" class="headerlink" title="2.图片预览："></a>2.图片预览：</h2> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//图片预览函数</span><br><span class="line">              function imgPreview(preview)&#123;</span><br><span class="line">                //获取目前上传文件，这里使用到了this传参</span><br><span class="line">                 var file = preview.files[0];//给file上传的第一个图片</span><br><span class="line">                 console.log(file);</span><br><span class="line">                 //设置预览图片大小</span><br><span class="line">                 if(file.size &gt; 1024*1024*2)&#123;</span><br><span class="line">                  alert(&quot;图片大小不可超过2MB!&quot;);</span><br><span class="line">                  return flase;</span><br><span class="line">                 &#125;</span><br><span class="line">                 //获取windows的URL</span><br><span class="line">                 var URL = window.URL || window.webkitURL;</span><br><span class="line">                 //通过file生成目标url</span><br><span class="line">                var imgURL = URL.createObjectURL(file);</span><br><span class="line">                //用这个URL产生一个img图片并显示 </span><br><span class="line">                var img=document.createElement(&quot;img&quot;);</span><br><span class="line">                img.src = imgURL;//将生成的imgURL给img</span><br><span class="line">                img.width = 100;</span><br><span class="line">                img.height = 100;</span><br><span class="line">                img.style.display = &#x27;block&#x27;;</span><br><span class="line">                document.getElementById(&quot;imgBox&quot;).appendChild(img);//通过id找到放图片的imgBox并添加一个节点img</span><br><span class="line">                &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-省市二级联动："><a href="#3-省市二级联动：" class="headerlink" title="3.省市二级联动："></a>3.省市二级联动：</h2> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//二级省市联动下拉菜单，以下的val都是使用this.value传回来的选择省所代表的值</span><br><span class="line">        var arr = new Array(5);//设置市，相当于一个字典,根据选择的省传回来的值进行相应的调用</span><br><span class="line">        arr[0] = [&#x27;请选择&#x27;];</span><br><span class="line">        arr[1] = [&#x27;武汉&#x27;,&#x27;潜江&#x27;];</span><br><span class="line">        arr[2] = [&#x27;杭州&#x27;,&#x27;宁波&#x27;];</span><br><span class="line">        arr[3] = [&#x27;合肥&#x27;,&#x27;芜湖&#x27;];</span><br><span class="line">        arr[4] = [&#x27;理塘顶真&#x27;,&#x27;雪豹&#x27;];</span><br><span class="line">    </span><br><span class="line">          function changeCity(val)&#123;//为防止重复出现市设计的函数,放在根据value匹配市前进行提前的删除归零</span><br><span class="line">            //获取城市下拉框</span><br><span class="line">            var selCity = document.getElementById(&quot;city&quot;);</span><br><span class="line">            // 若有元素则删除</span><br><span class="line">            var cityNodes=selCity.getElementsByTagName(&quot;option&quot;);</span><br><span class="line">  </span><br><span class="line">            for(var y=0;y&lt;cityNodes.length;y++)&#123;</span><br><span class="line">              selCity.removeChild(cityNodes[y]);</span><br><span class="line">              y--;</span><br><span class="line">            &#125;</span><br><span class="line">  </span><br><span class="line">            //根据value匹配市</span><br><span class="line">            for(var y=0;y&lt;arr[val].length;y++)&#123;</span><br><span class="line">              //创建option标签</span><br><span class="line">              var optionNode = document.createElement(&quot;option&quot;);</span><br><span class="line">              //设置option标签为城市名</span><br><span class="line">              optionNode.innerHTML=arr[val][y];</span><br><span class="line">              //将optionNode添加到下拉框节点中</span><br><span class="line">              selCity.appendChild(optionNode);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="查阅的资料："><a href="#查阅的资料：" class="headerlink" title="查阅的资料："></a>查阅的资料：</h3><p>1.<a target="_blank" rel="noopener" href="https://blog.csdn.net/XuM222222/article/details/88703470?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168014445016800225565687%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&request_id=168014445016800225565687&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-1-88703470-null-null.blog_rank_default&utm_term=oninput%E5%92%8Conchanget&spm=1018.2226.3001.4450">input元素的oninput事件和onchange事件</a><br>2.<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42321292/article/details/112427248?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168014475816800184165988%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=168014475816800184165988&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-112427248-null-null.142%5Ev77%5Econtrol,201%5Ev4%5Eadd_ask,239%5Ev2%5Einsert_chatgpt&utm_term=js%20%E4%B8%ADthis&spm=1018.2226.3001.4187">JS中的this详解</a><br>3.<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30716725/article/details/96335767?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168014509516800225557505%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=168014509516800225557505&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-1-96335767-null-null.142%5Ev77%5Econtrol,201%5Ev4%5Eadd_ask,239%5Ev2%5Einsert_chatgpt&utm_term=%20var%20URL%20=%20window.URL%20%7C%7C%20window.webkitURL;&spm=1018.2226.3001.4187">window.URL || window.webkitURL || window.mozURL 的作用</a><br>4.<a target="_blank" rel="noopener" href="https://blog.csdn.net/liangmengbk/article/details/84678405?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168014555716800211583347%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=168014555716800211583347&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~top_positive~default-1-84678405-null-null.blog_rank_default&utm_term=appendchild&spm=1018.2226.3001.4450">JavaScript中的appendChild（）方法</a><br>6.<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34663267/article/details/82431093?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168014606516800222859932%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=168014606516800222859932&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-82431093-null-null.142%5Ev77%5Econtrol,201%5Ev4%5Eadd_ask,239%5Ev2%5Einsert_chatgpt&utm_term=innerhtml&spm=1018.2226.3001.4187">innerHTML作用和用法</a><br>5.<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_23337175/article/details/81325341?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168014620016800227489580%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=168014620016800227489580&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~baidu_landing_v2~default-3-81325341-null-null.142%5Ev77%5Econtrol,201%5Ev4%5Eadd_ask,239%5Ev2%5Einsert_chatgpt&utm_term=creatElement&spm=1018.2226.3001.4187">创建元素节点createElement</a><br>6.<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34093387/article/details/120774792?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168014740616800184117757%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=168014740616800184117757&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-120774792-null-null.142%5Ev77%5Econtrol,201%5Ev4%5Eadd_ask,239%5Ev2%5Einsert_chatgpt&utm_term=removechild&spm=1018.2226.3001.4187">Javascript removeChild()删除节点及删除子节点的方法</a></p>
-<hr>
-<p>特殊问题：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44140870/article/details/123766846?ops_request_misc=&request_id=&biz_id=102&utm_term=removechild&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-1-123766846.142%5Ev77%5Econtrol,201%5Ev4%5Eadd_ask,239%5Ev2%5Einsert_chatgpt&spm=1018.2226.3001.4187">JS删除子元素删除不干净问题</a><br>除了这种还可以使用y减减来实现删除干净；</p>
-
+        <p>领航</p>
+        
       
 
 
@@ -619,7 +398,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2023/03/27/%E2%80%9C20230327%E6%9C%89%E5%85%B3%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%BC%B9%E6%80%A7%E7%9B%92%E6%A8%A1%E5%9E%8B%E2%80%9D/">“20230327有关盒子模型和弹性盒模型”（主要是慕课学习的一点基础知识的小总结）</a>
+      <a class="article-title" href="/2023/03/27/%E2%80%9C20230327%E6%9C%89%E5%85%B3%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%BC%B9%E6%80%A7%E7%9B%92%E6%A8%A1%E5%9E%8B%E2%80%9D/">“20230327有关盒子模型和弹性盒模型”</a>
     </h1>
   
 
@@ -632,32 +411,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-盒子模型基础"><a href="#1-盒子模型基础" class="headerlink" title="1.盒子模型基础"></a>1.盒子模型基础</h1><hr>
-<h2 id="又是偷偷引用别人的文章挂在开头，忘记了就看看："><a href="#又是偷偷引用别人的文章挂在开头，忘记了就看看：" class="headerlink" title="又是偷偷引用别人的文章挂在开头，忘记了就看看："></a>又是偷偷引用别人的文章挂在开头，忘记了就看看：</h2><h2 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46048542/article/details/123910411?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522167990374816800182116601%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=167990374816800182116601&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-123910411-null-null.142%5Ev76%5Ewechat,201%5Ev4%5Eadd_ask,239%5Ev2%5Einsert_chatgpt&utm_term=%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B&spm=1018.2226.3001.4187">盒子模型</a></h2><h2 id="宽度和高度"><a href="#宽度和高度" class="headerlink" title="宽度和高度"></a>宽度和高度</h2><h2 id="css里的width和height指填充以里的内容范围元素宽度-x3D-左边界-左边框-左填充-内容宽度-右边界-右边框-右填充元素高度同理"><a href="#css里的width和height指填充以里的内容范围元素宽度-x3D-左边界-左边框-左填充-内容宽度-右边界-右边框-右填充元素高度同理" class="headerlink" title="css里的width和height指填充以里的内容范围元素宽度&#x3D;左边界+左边框+左填充+内容宽度+右边界+右边框+右填充元素高度同理"></a>css里的width和height指填充以里的内容范围<br>元素宽度&#x3D;左边界+左边框+左填充+内容宽度+右边界+右边框+右填充<br>元素高度同理</h2><h2 id="背景色"><a href="#背景色" class="headerlink" title="背景色"></a>背景色</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">div&#123;background-color：red；&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="使用border为盒子加边框（即围绕着内容及补白的线，可设置其粗细，样式和边框）"><a href="#使用border为盒子加边框（即围绕着内容及补白的线，可设置其粗细，样式和边框）" class="headerlink" title="使用border为盒子加边框（即围绕着内容及补白的线，可设置其粗细，样式和边框）"></a>使用border为盒子加边框（即围绕着内容及补白的线，可设置其粗细，样式和边框）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> border-width:2px;  也可以设置为thin/medium/thick</span><br><span class="line">border-style:soild/dash/dotted 分别为实线/虚线/点线</span><br><span class="line">border-color：red；</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<p>也可以单独选择四周：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">border-bottom/right/left/top :1px soild red (简写）</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<p>设置圆角：<br> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">div&#123;border-radius:20px 10px 15px 30px;（按照下方顺序）</span><br><span class="line">也可以分开写左上，右上，右下，左下： div&#123;border-top-left：20px；···&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>特别注意：左上右下，右上左下同可写成：<br> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">border-radius：20px 10px；</span><br></pre></td></tr></table></figure><br>若全等则只写一个像素值即可</p>
-<p>一个正方形当设置圆角效果值为元素宽度一半，显示为圆形</p>
-<h2 id="使用padding为盒子设置内边距（填充）"><a href="#使用padding为盒子设置内边距（填充）" class="headerlink" title="使用padding为盒子设置内边距（填充）"></a>使用padding为盒子设置内边距（填充）</h2><p>内容与边距可设置距离，称为“内边距”（填充），可分为上右下左（顺时针）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">div(padding:20px 10px 15px 30px;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>同border-radius可以分开写padding-top，bottom，left，right；<br>全同写一个<br>注意：上下同，左右同写俩个</p>
-<h2 id="使用margin为盒子设置外边距-顺序：上右下左（顺时针同padding）"><a href="#使用margin为盒子设置外边距-顺序：上右下左（顺时针同padding）" class="headerlink" title="使用margin为盒子设置外边距 顺序：上右下左（顺时针同padding）"></a>使用margin为盒子设置外边距 顺序：上右下左（顺时针同padding）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div&#123;margin:20px 10px 15px 20px;&#125;</span><br></pre></td></tr></table></figure>
-<p>同padding：也可分为margin-top&#x2F;right&#x2F;left&#x2F;bottom<br>上下同，左右同：写俩像素<br>全同直接写一个</p>
-<h2 id="不同padding：padding在边框内，margin在边框外"><a href="#不同padding：padding在边框内，margin在边框外" class="headerlink" title="不同padding：padding在边框内，margin在边框外"></a>不同padding：padding在边框内，margin在边框外</h2><h1 id="2-弹性盒模型"><a href="#2-弹性盒模型" class="headerlink" title="2.弹性盒模型"></a>2.弹性盒模型</h1><hr>
-<h2 id="再挂一篇弹性盒模型"><a href="#再挂一篇弹性盒模型" class="headerlink" title="再挂一篇弹性盒模型"></a>再挂一篇<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46726346/article/details/120826908?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522167990681916800184118852%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=167990681916800184118852&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_click~default-1-120826908-null-null.142%5Ev76%5Ewechat,201%5Ev4%5Eadd_ask,239%5Ev2%5Einsert_chatgpt&utm_term=%E5%BC%B9%E6%80%A7%E7%9B%92%E6%A8%A1%E5%9E%8B&spm=1018.2226.3001.4187">弹性盒模型</a></h2><hr>
-<h2 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">设置display：flex；可把块级元素同排显示</span><br><span class="line">flex需要加在父元素，改变子元素排列顺序</span><br><span class="line">默认从左往右一次排列和父元素右边无间隙</span><br></pre></td></tr></table></figure>
-<p>##使用justify-content设置横轴排列式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">justify-content：flex-start（交叉轴的起点对齐）/flex-end（右对齐）</span><br><span class="line">justify-content：center(居中)/space-between(俩端对齐，项目间间距相等)/space-ground（每个项目俩侧距离相等所以项目间隔项目边框间隔俩倍） </span><br></pre></td></tr></table></figure>
-<h2 id="使用-align-items设置纵轴排列方式"><a href="#使用-align-items设置纵轴排列方式" class="headerlink" title="使用 align-items设置纵轴排列方式"></a>使用 align-items设置纵轴排列方式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">align-items:flex-start(上对齐)/flex-end(下对齐)</span><br><span class="line">align-items：centter/baseline/stretch</span><br><span class="line">分别为：居中；与项目第一行文字对齐；如项目未设置子项目高或者为auto将占满整个容器</span><br></pre></td></tr></table></figure>
-<h2 id="给元素设置flex占比"><a href="#给元素设置flex占比" class="headerlink" title="给元素设置flex占比"></a>给元素设置flex占比</h2><p>例子：即在每个子元素中加入：flex：1；（数字任意定，看比例）</p>
-<p>注：flex属性占比是相对父元素而言<br>只能设置为正整数<br>设置了flex后宽度失效（自动占满整个父元素）</p>
-
+        <h2 id="主要是慕课学习的一点基础知识的小总结-1-盒子模型基础"><a href="#主要是慕课学习的一点基础知识的小总结-1-盒子模型基础" class="headerlink" title="主要是慕课学习的一点基础知识的小总结# 1.盒子模型基础"></a>主要是慕课学习的一点基础知识的小总结<br>
+        
       
 
 
@@ -729,9 +484,7 @@
       
         <hr>
 <p>记录在设置验证码时遇到的问题</p>
-<h3 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h3><h2 id="先定义一个字符串数组，再定义一个空字符数组用于储存随机数，使用循环拼接并返回字符；代码如下：学习到的细节"><a href="#先定义一个字符串数组，再定义一个空字符数组用于储存随机数，使用循环拼接并返回字符；代码如下：学习到的细节" class="headerlink" title="先定义一个字符串数组，再定义一个空字符数组用于储存随机数，使用循环拼接并返回字符；代码如下：学习到的细节"></a>先定义一个字符串数组，再定义一个空字符数组用于储存随机数，使用循环拼接并返回字符；<br>代码如下：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">//验证码设计函数</span><br><span class="line">const code = document.querySelector(&#x27;#code&#x27;)/*声明一个内存地址值不可改变的code，但其变量内部属性可以更改，且只在声明的块级作用域有效，并获取第一个id为code的元素*/</span><br><span class="line">span = document.querySelector(&#x27;span&#x27;)//获取为第一个标签名span的元素</span><br><span class="line">function randomNum()&#123;//随机数方法</span><br><span class="line">//定义一个字符串数组</span><br><span class="line">const strArr = &#x27;qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM&#x27;</span><br><span class="line">//定义一个空字符串</span><br><span class="line">let str=&#x27;&#x27;</span><br><span class="line">//循环拼接字符串</span><br><span class="line">for(let i = 0; i&lt;4 ;i++)&#123;</span><br><span class="line">str += strArr.charAt(Math.round(Math.random() * 52))</span><br><span class="line">                         &#125;</span><br><span class="line">//返回拼接字符串</span><br><span class="line">return str</span><br><span class="line">                    &#125;</span><br><span class="line">//测试</span><br><span class="line">console.log(randomNum())</span><br><span class="line">//给盒子添加随机字符串，将获得的验证码加入先前获得到的code中去</span><br><span class="line">code.innerText = randomNum()//</span><br><span class="line">//点击刷新，每点击一次就更新一次</span><br><span class="line">span.onclick = _ =&gt;&#123;</span><br><span class="line">code.innerText = randomNum()</span><br><span class="line">            &#125;</span><br><span class="line"> </span><br><span class="line"> &lt;/script&gt;</span><br><span class="line">        </span><br><span class="line"></span><br></pre></td></tr></table></figure><br>学习到的细节</h2><h2 id="快捷写法："><a href="#快捷写法：" class="headerlink" title="快捷写法："></a>快捷写法：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">span.onclick = _ =&gt;&#123;</span><br><span class="line">                div.innerText = randomNum()</span><br><span class="line">            &#125;//点击span触发这个函数</span><br></pre></td></tr></table></figure></h2><h3 id="查阅的资料："><a href="#查阅的资料：" class="headerlink" title="查阅的资料："></a>查阅的资料：</h3><p>1.<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_53614367/article/details/123673400?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168014238416800186535320%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=168014238416800186535320&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-123673400-null-null.142%5Ev77%5Econtrol,201%5Ev4%5Eadd_ask,239%5Ev2%5Einsert_chatgpt&utm_term=js%20%E4%B8%ADconst&spm=1018.2226.3001.4187">详解JS中var、let以及const作用域</a><br>2.<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44885775/article/details/124420956?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522168014255016800226588719%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=168014255016800226588719&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduend~default-1-124420956-null-null.blog_rank_default&utm_term=js%E4%B8%AD%E7%9A%84document.queryselector&spm=1018.2226.3001.4450">document.querySelector()方法</a><br>3.<a target="_blank" rel="noopener" href="https://blog.csdn.net/wuxiaopengnihao1/article/details/126809672?ops_request_misc=&request_id=&biz_id=102&utm_term=charAt&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduweb~default-0-126809672.blog_rank_default&spm=1018.2226.3001.4450">JavaScript字符串 charAt() 方法</a><br>4.<a target="_blank" rel="noopener" href="https://blog.csdn.net/seiEight/article/details/90346109?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-90346109-blog-52459066.235%5Ev27%5Epc_relevant_3mothn_strategy_recovery&spm=1001.2101.3001.4242.1&utm_relevant_index=3">关于js中Math.round()方法</a>取整时会用到但实际上我并没有设置数字，它是多余的<br>5.console.log用于在控制台输出信息，调试非常有用</p>
-<p>[特殊问题]（<a target="_blank" rel="noopener" href="http://t.csdn.cn/TWENy%EF%BC%89">http://t.csdn.cn/TWENy）</a><br>解决Cannot set properties of null (setting ‘xxx‘)的问题</p>
-
+        
       
 
 
@@ -803,24 +556,7 @@
       
         <hr>
 <p>第一篇博文记录我建站的经历</p>
-<p>在2023&#x2F;03&#x2F;22在前端招新群看到了<a target="_blank" rel="noopener" href="https://monkeyhbd.com/">侯秉德学长的网站</a>突发奇想想建一个，于是就有了该网站的出现。</p>
-<h3 id="大致流程"><a href="#大致流程" class="headerlink" title="大致流程"></a>大致流程</h3><p>大致按照知乎大神[枫叶的教程]( <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102592286/">https://zhuanlan.zhihu.com/p/102592286/</a> ） ，教程推荐主题是next，但是由于个人技术能力不够、原理不了解，出现了很多个人能力范围内不能解决的问题，最终选择了yilia主题。由于教程是几年前的，有很多变化，查阅百度，简书，csdn，github，知乎综合后解决了一部分问题。</p>
-<h3 id="问题及其解决"><a href="#问题及其解决" class="headerlink" title="问题及其解决"></a>问题及其解决</h3><p>1.github注册</p>
-<p>这一部分由于提前有过账号，注册也很简单，没什么问题。</p>
-<p>2.git的安装</p>
-<p>安装很简单，注意使用时应在被使用目录下右键点击Git Bash Here，如果没有直接显示是因为隐藏在更多选项中了。</p>
-<p>3.绑定github并提交文件</p>
-<p>利用SSH来完成GitHub的绑定并提交文件，这样很方便快捷。首先来简单介绍一下SSH协议：<br>SSH（安全外壳协议，Secure Shell 的缩写）是建立在应用层基础上的安全协议。SSH 是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议，利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。简单来说，SSH就是保障你的账户安全，将你的数据加密压缩，不仅防止其他人截获你的数据，还能加快传输速度。</p>
-<p>文章错误：输入应改为git push origin main( github更新后branch没有master而是main）</p>
-<p>4.域名购买</p>
-<p>按着来就ok</p>
-<p>5.重点：安装Hexo和Node.js</p>
-<p>在_config.yml操作时<br>依旧是将master替换为main，并且注意空格和缩进（我就因此报错）</p>
-<p>6.域名解析</p>
-<p>没什么好说的</p>
-<p>7.主题设置</p>
-<p>用next总是报错，还无法解决，有待我的能力提升，yalia也挺好，直接在github上搜索按照教程设置就好</p>
-
+        
       
 
 
