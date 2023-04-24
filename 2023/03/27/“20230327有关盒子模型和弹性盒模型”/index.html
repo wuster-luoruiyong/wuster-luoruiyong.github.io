@@ -16,7 +16,7 @@
 <meta property="og:description" content="1.盒子模型基础 又是偷偷引用别人的文章挂在开头，忘记了就看看：盒子模型宽度和高度css里的width和height指填充以里的内容范围元素宽度&#x3D;左边界+左边框+左填充+内容宽度+右边界+右边框+右填充元素高度同理背景色12div&amp;#123;background-color：red；&amp;#125;  使用border为盒子加边框（即围绕着内容及补白的线，可设置其粗细，样式和边框）1234">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-27T08:02:27.638Z">
-<meta property="article:modified_time" content="2023-03-30T01:54:38.738Z">
+<meta property="article:modified_time" content="2023-04-24T14:17:46.501Z">
 <meta property="article:author" content="lllry">
 <meta name="twitter:card" content="summary">
   
@@ -41,9 +41,9 @@
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
-    <div class="left-col" q-class="show:isShow">
+    <div class="left-col" q-class="show:isShow" style="background: url('https://pic3.zhimg.com/v2-a858f0f64d27d3817a1641882a483ee2_r.jpg') no-repeat center bottom;background-size: cover;" >
       
-<div class="overlay" style="background: #4d4d4d"></div>
+<div class="overlay" style="background: url('https://ts1.cn.mm.bing.net/th/id/R-C.07431a23a313ea23b991569d639aba8c?rik=TpfM3nQ9jiEf4w&riu=http%3a%2f%2fp12.qhimg.com%2ft018f7ce5f10b3e2eb1.jpg&ehk=rwVs%2fomHXk0Dg%2fy%2b9J0%2b1jtEXgBqBUGCL3xm7wwJWRc%3d&risl=&pid=ImgRaw&r=0') no-repeat center bottom;background-size: cover;"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
@@ -58,6 +58,12 @@
 			<ul>
 			
 				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/archives/index.html">归档</a></li>
+	        
+				<li><a href="/categories/index.html">分类</a></li>
+	        
+				<li><a href="/tags/index.html">标签</a></li>
 	        
 			</ul>
 		</nav>
@@ -92,6 +98,10 @@
 		        
 			</div>
 			
+				<div style="position:absolute; bottom:120px left:auto; width:85%">
+				<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=200 height=86 src="//music.163.com/outchain/player?type=2&id=1473721141&auto=1&height=66"></iframe>
+				</div>
+			
 		</nav>
 	</header>		
 </div>
@@ -117,6 +127,12 @@
 			
 				
 			
+				
+			
+				
+			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -134,10 +150,16 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 100%"><a href="/">主页</a></li>
+					<li style="width: 25%"><a href="/">主页</a></li>
+		        
+					<li style="width: 25%"><a href="/archives/index.html">归档</a></li>
+		        
+					<li style="width: 25%"><a href="/categories/index.html">分类</a></li>
+		        
+					<li style="width: 25%"><a href="/tags/index.html">标签</a></li>
 		        
 				</ul>
 			</nav>
@@ -153,6 +175,15 @@
           </div>
           <div id="js-content" class="content-ll">
             <article id="post-“20230327有关盒子模型和弹性盒模型”" class="article article-type-post " itemscope itemprop="blogPost">
+  <header class="article-header">
+  
+    <span class="archive-article-date">
+        阅读量 <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+    
+    
+ </header>
   <div class="article-inner">
     
       <header class="article-header">
@@ -199,6 +230,26 @@
 <p>注：flex属性占比是相对父元素而言<br>只能设置为正整数<br>设置了flex后宽度失效（自动占满整个父元素）</p>
 
       
+
+
+  <div class="declare">
+    <strong>本文作者：</strong>
+    
+      lllry
+    
+    <br>
+    <strong>本文链接：</strong>
+    http://wusterlllry.xyz/2023/03/27/%E2%80%9C20230327%E6%9C%89%E5%85%B3%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%BC%B9%E6%80%A7%E7%9B%92%E6%A8%A1%E5%9E%8B%E2%80%9D/
+    <br>
+    <strong>版权声明：</strong>
+    本作品采用
+    <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    进行许可。转载请注明出处！
+    
+      <br>
+      <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"/></a>
+    
+  </div>
 
       
         <div class="page-reward">
@@ -331,6 +382,19 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">1.盒子模型基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%88%E6%98%AF%E5%81%B7%E5%81%B7%E5%BC%95%E7%94%A8%E5%88%AB%E4%BA%BA%E7%9A%84%E6%96%87%E7%AB%A0%E6%8C%82%E5%9C%A8%E5%BC%80%E5%A4%B4%EF%BC%8C%E5%BF%98%E8%AE%B0%E4%BA%86%E5%B0%B1%E7%9C%8B%E7%9C%8B%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">又是偷偷引用别人的文章挂在开头，忘记了就看看：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">盒子模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%BD%E5%BA%A6%E5%92%8C%E9%AB%98%E5%BA%A6"><span class="toc-number">1.3.</span> <span class="toc-text">宽度和高度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css%E9%87%8C%E7%9A%84width%E5%92%8Cheight%E6%8C%87%E5%A1%AB%E5%85%85%E4%BB%A5%E9%87%8C%E7%9A%84%E5%86%85%E5%AE%B9%E8%8C%83%E5%9B%B4%E5%85%83%E7%B4%A0%E5%AE%BD%E5%BA%A6-x3D-%E5%B7%A6%E8%BE%B9%E7%95%8C-%E5%B7%A6%E8%BE%B9%E6%A1%86-%E5%B7%A6%E5%A1%AB%E5%85%85-%E5%86%85%E5%AE%B9%E5%AE%BD%E5%BA%A6-%E5%8F%B3%E8%BE%B9%E7%95%8C-%E5%8F%B3%E8%BE%B9%E6%A1%86-%E5%8F%B3%E5%A1%AB%E5%85%85%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%90%8C%E7%90%86"><span class="toc-number">1.4.</span> <span class="toc-text">css里的width和height指填充以里的内容范围元素宽度&#x3D;左边界+左边框+左填充+内容宽度+右边界+右边框+右填充元素高度同理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E8%89%B2"><span class="toc-number">1.5.</span> <span class="toc-text">背景色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8border%E4%B8%BA%E7%9B%92%E5%AD%90%E5%8A%A0%E8%BE%B9%E6%A1%86%EF%BC%88%E5%8D%B3%E5%9B%B4%E7%BB%95%E7%9D%80%E5%86%85%E5%AE%B9%E5%8F%8A%E8%A1%A5%E7%99%BD%E7%9A%84%E7%BA%BF%EF%BC%8C%E5%8F%AF%E8%AE%BE%E7%BD%AE%E5%85%B6%E7%B2%97%E7%BB%86%EF%BC%8C%E6%A0%B7%E5%BC%8F%E5%92%8C%E8%BE%B9%E6%A1%86%EF%BC%89"><span class="toc-number">1.6.</span> <span class="toc-text">使用border为盒子加边框（即围绕着内容及补白的线，可设置其粗细，样式和边框）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8padding%E4%B8%BA%E7%9B%92%E5%AD%90%E8%AE%BE%E7%BD%AE%E5%86%85%E8%BE%B9%E8%B7%9D%EF%BC%88%E5%A1%AB%E5%85%85%EF%BC%89"><span class="toc-number">1.7.</span> <span class="toc-text">使用padding为盒子设置内边距（填充）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8margin%E4%B8%BA%E7%9B%92%E5%AD%90%E8%AE%BE%E7%BD%AE%E5%A4%96%E8%BE%B9%E8%B7%9D-%E9%A1%BA%E5%BA%8F%EF%BC%9A%E4%B8%8A%E5%8F%B3%E4%B8%8B%E5%B7%A6%EF%BC%88%E9%A1%BA%E6%97%B6%E9%92%88%E5%90%8Cpadding%EF%BC%89"><span class="toc-number">1.8.</span> <span class="toc-text">使用margin为盒子设置外边距 顺序：上右下左（顺时针同padding）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%90%8Cpadding%EF%BC%9Apadding%E5%9C%A8%E8%BE%B9%E6%A1%86%E5%86%85%EF%BC%8Cmargin%E5%9C%A8%E8%BE%B9%E6%A1%86%E5%A4%96"><span class="toc-number">1.9.</span> <span class="toc-text">不同padding：padding在边框内，margin在边框外</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%BC%B9%E6%80%A7%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">2.弹性盒模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%8D%E6%8C%82%E4%B8%80%E7%AF%87%E5%BC%B9%E6%80%A7%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text">再挂一篇弹性盒模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flex"><span class="toc-number">2.2.</span> <span class="toc-text">flex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-align-items%E8%AE%BE%E7%BD%AE%E7%BA%B5%E8%BD%B4%E6%8E%92%E5%88%97%E6%96%B9%E5%BC%8F"><span class="toc-number">2.3.</span> <span class="toc-text">使用 align-items设置纵轴排列方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%99%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AEflex%E5%8D%A0%E6%AF%94"><span class="toc-number">2.4.</span> <span class="toc-text">给元素设置flex占比</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
@@ -365,6 +429,26 @@
   
 
   
+  
+      <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+var gitalk = new Gitalk({
+  clientID: 'your clientID',
+  clientSecret: 'your clientSecret',
+  repo: 'git_comment',
+  owner: 'findtheonlyway',
+  admin: ['erbiduo'],
+  id: md5(window.location.pathname),
+  distractionFreeMode: true
+})
+
+gitalk.render('gitalk-container')
+</script>
+  
 
 
           </div>
@@ -375,13 +459,45 @@
     <div id="footer-info">
     	<div class="footer-left">
     		&copy; 2023 lllry
+			<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+	var now = new Date(); 
+	function createtime() { 
+		var grt= new Date("3/24/2023 20:00:00");//此处修改你的建站时间或者网站上线时间 
+		now.setTime(now.getTime()+250); 
+		days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+		hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+		if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+		mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+		seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+		snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+		document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+		document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+	} 
+	setInterval("createtime()",250);
+</script>
     	</div>
       	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+    
+    
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+      		<span id="busuanzi_container_site_pv">
+                本站总访问量：<span id="busuanzi_value_site_pv"></span>次
+            </span>
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_container_site_uv">
+                本站访客数：<span id="busuanzi_value_site_uv"></span>人
+            </span>
+    
+    
       	</div>
     </div>
   </div>
 </footer>
+<!--页面点击小红心-->
+<script type="text/javascript" src="/love.js"></script>
+
+
     </div>
     <script>
 	var yiliaConfig = {
@@ -391,7 +507,7 @@
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: false,
+		open_in_new: true,
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
