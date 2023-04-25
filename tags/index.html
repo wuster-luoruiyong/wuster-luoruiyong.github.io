@@ -202,7 +202,58 @@
       </header>
     
     <div class="article-entry" itemprop="articleBody">
-      
+            
+
+        
+            
+            <div class="tags">
+                <a href="/tags/%E5%89%8D%E7%AB%AFcss/" style="font-size: 35px; color: #000">前端css</a> <a href="/tags/%E5%89%8D%E7%AB%AFjs/" style="font-size: 16px; color: #808080">前端js</a> <a href="/tags/%E5%BB%BA%E7%AB%99/" style="font-size: 16px; color: #808080">建站</a> <a href="/tags/%E9%A2%86%E8%88%AA%E4%BD%9C%E4%B8%9A/" style="font-size: 35px; color: #000">领航作业</a>
+            </div>
+            <style>
+                .category-list li{
+                    display: inline-block;
+                    margin: 0 1em .5em 0;
+                    padding: 4px;
+                    border: 1px solid lightgray;
+                    font-size: 1.2em;
+                }
+                .category-list a {
+                    color: gray;
+                }
+                .category-list-item:hover a {
+                    color: gray;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+                .category-list-count {
+                    margin-left: 2px;
+                    font-size: .9em;
+                }
+                .article-entry ul li:before{
+                    display: none;
+                }
+                .article-inner  {
+                    text-align: center;
+                }
+                .tags {
+                    max-width: 40em;
+                    margin: 2em auto;
+                    margin-top: 0em;
+                }
+                .tags a {
+                    margin-right: 1em;
+                    border-bottom: 1px solid gray;
+                    line-height: 65px;
+                    white-space: nowrap;
+                }
+                .tags a:hover {
+                    border-bottom: 2px solid black;
+                    font-style: italic;
+                    text-decoration: none;
+                }
+            </style>
+        
+
         
       
 
@@ -507,6 +558,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">建站</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">领航作业</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">前端css</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>

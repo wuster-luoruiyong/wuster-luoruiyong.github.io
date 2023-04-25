@@ -8,16 +8,17 @@
   <link rel="dns-prefetch" href="http://wusterlllry.xyz">
   <title>“20230327有关盒子模型和弹性盒模型” | lllry的小世界</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="主要是慕课学习的一点基础知识的小总结">
+  <meta name="description" content="盒子模型和弹性盒模型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="“20230327有关盒子模型和弹性盒模型”">
 <meta property="og:url" content="http://wusterlllry.xyz/2023/03/27/%E2%80%9C20230327%E6%9C%89%E5%85%B3%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%BC%B9%E6%80%A7%E7%9B%92%E6%A8%A1%E5%9E%8B%E2%80%9D/index.html">
 <meta property="og:site_name" content="lllry的小世界">
-<meta property="og:description" content="主要是慕课学习的一点基础知识的小总结">
+<meta property="og:description" content="盒子模型和弹性盒模型">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-27T08:02:27.638Z">
-<meta property="article:modified_time" content="2023-04-24T17:07:41.028Z">
+<meta property="article:modified_time" content="2023-04-25T10:29:38.047Z">
 <meta property="article:author" content="lllry">
+<meta property="article:tag" content="前端css">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="lllry的小世界" type="application/atom+xml">
@@ -202,8 +203,11 @@
       </header>
     
     <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="主要是慕课学习的一点基础知识的小总结-1-盒子模型基础"><a href="#主要是慕课学习的一点基础知识的小总结-1-盒子模型基础" class="headerlink" title="主要是慕课学习的一点基础知识的小总结# 1.盒子模型基础"></a>主要是慕课学习的一点基础知识的小总结<br><span id="more"></span><br># 1.盒子模型基础</h2><h2 id="又是偷偷引用别人的文章挂在开头，忘记了就看看："><a href="#又是偷偷引用别人的文章挂在开头，忘记了就看看：" class="headerlink" title="又是偷偷引用别人的文章挂在开头，忘记了就看看："></a>又是偷偷引用别人的文章挂在开头，忘记了就看看：</h2><h2 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46048542/article/details/123910411?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522167990374816800182116601%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=167990374816800182116601&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-123910411-null-null.142%5Ev76%5Ewechat,201%5Ev4%5Eadd_ask,239%5Ev2%5Einsert_chatgpt&utm_term=%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B&spm=1018.2226.3001.4187">盒子模型</a></h2><h2 id="宽度和高度"><a href="#宽度和高度" class="headerlink" title="宽度和高度"></a>宽度和高度</h2><h2 id="css里的width和height指填充以里的内容范围元素宽度-x3D-左边界-左边框-左填充-内容宽度-右边界-右边框-右填充元素高度同理"><a href="#css里的width和height指填充以里的内容范围元素宽度-x3D-左边界-左边框-左填充-内容宽度-右边界-右边框-右填充元素高度同理" class="headerlink" title="css里的width和height指填充以里的内容范围元素宽度&#x3D;左边界+左边框+左填充+内容宽度+右边界+右边框+右填充元素高度同理"></a>css里的width和height指填充以里的内容范围<br>元素宽度&#x3D;左边界+左边框+左填充+内容宽度+右边界+右边框+右填充<br>元素高度同理</h2><h2 id="背景色"><a href="#背景色" class="headerlink" title="背景色"></a>背景色</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">div&#123;background-color：red；&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+            
+
+        
+
+        <h2 id="盒子模型和弹性盒模型-1-盒子模型基础"><a href="#盒子模型和弹性盒模型-1-盒子模型基础" class="headerlink" title="盒子模型和弹性盒模型# 1.盒子模型基础"></a>盒子模型和弹性盒模型<br><span id="more"></span><br># 1.盒子模型基础</h2><h2 id="又是偷偷引用别人的文章挂在开头，忘记了就看看："><a href="#又是偷偷引用别人的文章挂在开头，忘记了就看看：" class="headerlink" title="又是偷偷引用别人的文章挂在开头，忘记了就看看："></a>又是偷偷引用别人的文章挂在开头，忘记了就看看：</h2><h2 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46048542/article/details/123910411?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522167990374816800182116601%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=167990374816800182116601&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-123910411-null-null.142%5Ev76%5Ewechat,201%5Ev4%5Eadd_ask,239%5Ev2%5Einsert_chatgpt&utm_term=%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B&spm=1018.2226.3001.4187">盒子模型</a></h2><h2 id="宽度和高度"><a href="#宽度和高度" class="headerlink" title="宽度和高度"></a>宽度和高度</h2><h2 id="css里的width和height指填充以里的内容范围元素宽度-x3D-左边界-左边框-左填充-内容宽度-右边界-右边框-右填充元素高度同理"><a href="#css里的width和height指填充以里的内容范围元素宽度-x3D-左边界-左边框-左填充-内容宽度-右边界-右边框-右填充元素高度同理" class="headerlink" title="css里的width和height指填充以里的内容范围元素宽度&#x3D;左边界+左边框+左填充+内容宽度+右边界+右边框+右填充元素高度同理"></a>css里的width和height指填充以里的内容范围<br>元素宽度&#x3D;左边界+左边框+左填充+内容宽度+右边界+右边框+右填充<br>元素高度同理</h2><h2 id="背景色"><a href="#背景色" class="headerlink" title="背景色"></a>背景色</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">div&#123;background-color：red；&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <hr>
 <h2 id="使用border为盒子加边框（即围绕着内容及补白的线，可设置其粗细，样式和边框）"><a href="#使用border为盒子加边框（即围绕着内容及补白的线，可设置其粗细，样式和边框）" class="headerlink" title="使用border为盒子加边框（即围绕着内容及补白的线，可设置其粗细，样式和边框）"></a>使用border为盒子加边框（即围绕着内容及补白的线，可设置其粗细，样式和边框）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> border-width:2px;  也可以设置为thin/medium/thick</span><br><span class="line">border-style:soild/dash/dotted 分别为实线/虚线/点线</span><br><span class="line">border-color：red；</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -286,6 +290,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">前端css</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -388,7 +403,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E6%98%AF%E6%85%95%E8%AF%BE%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%B8%80%E7%82%B9%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%9A%84%E5%B0%8F%E6%80%BB%E7%BB%93-1-%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">主要是慕课学习的一点基础知识的小总结# 1.盒子模型基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%88%E6%98%AF%E5%81%B7%E5%81%B7%E5%BC%95%E7%94%A8%E5%88%AB%E4%BA%BA%E7%9A%84%E6%96%87%E7%AB%A0%E6%8C%82%E5%9C%A8%E5%BC%80%E5%A4%B4%EF%BC%8C%E5%BF%98%E8%AE%B0%E4%BA%86%E5%B0%B1%E7%9C%8B%E7%9C%8B%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">又是偷偷引用别人的文章挂在开头，忘记了就看看：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">盒子模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%BD%E5%BA%A6%E5%92%8C%E9%AB%98%E5%BA%A6"><span class="toc-number">4.</span> <span class="toc-text">宽度和高度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css%E9%87%8C%E7%9A%84width%E5%92%8Cheight%E6%8C%87%E5%A1%AB%E5%85%85%E4%BB%A5%E9%87%8C%E7%9A%84%E5%86%85%E5%AE%B9%E8%8C%83%E5%9B%B4%E5%85%83%E7%B4%A0%E5%AE%BD%E5%BA%A6-x3D-%E5%B7%A6%E8%BE%B9%E7%95%8C-%E5%B7%A6%E8%BE%B9%E6%A1%86-%E5%B7%A6%E5%A1%AB%E5%85%85-%E5%86%85%E5%AE%B9%E5%AE%BD%E5%BA%A6-%E5%8F%B3%E8%BE%B9%E7%95%8C-%E5%8F%B3%E8%BE%B9%E6%A1%86-%E5%8F%B3%E5%A1%AB%E5%85%85%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%90%8C%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">css里的width和height指填充以里的内容范围元素宽度&#x3D;左边界+左边框+左填充+内容宽度+右边界+右边框+右填充元素高度同理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E8%89%B2"><span class="toc-number">6.</span> <span class="toc-text">背景色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8border%E4%B8%BA%E7%9B%92%E5%AD%90%E5%8A%A0%E8%BE%B9%E6%A1%86%EF%BC%88%E5%8D%B3%E5%9B%B4%E7%BB%95%E7%9D%80%E5%86%85%E5%AE%B9%E5%8F%8A%E8%A1%A5%E7%99%BD%E7%9A%84%E7%BA%BF%EF%BC%8C%E5%8F%AF%E8%AE%BE%E7%BD%AE%E5%85%B6%E7%B2%97%E7%BB%86%EF%BC%8C%E6%A0%B7%E5%BC%8F%E5%92%8C%E8%BE%B9%E6%A1%86%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">使用border为盒子加边框（即围绕着内容及补白的线，可设置其粗细，样式和边框）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8padding%E4%B8%BA%E7%9B%92%E5%AD%90%E8%AE%BE%E7%BD%AE%E5%86%85%E8%BE%B9%E8%B7%9D%EF%BC%88%E5%A1%AB%E5%85%85%EF%BC%89"><span class="toc-number">8.</span> <span class="toc-text">使用padding为盒子设置内边距（填充）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8margin%E4%B8%BA%E7%9B%92%E5%AD%90%E8%AE%BE%E7%BD%AE%E5%A4%96%E8%BE%B9%E8%B7%9D-%E9%A1%BA%E5%BA%8F%EF%BC%9A%E4%B8%8A%E5%8F%B3%E4%B8%8B%E5%B7%A6%EF%BC%88%E9%A1%BA%E6%97%B6%E9%92%88%E5%90%8Cpadding%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">使用margin为盒子设置外边距 顺序：上右下左（顺时针同padding）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%90%8Cpadding%EF%BC%9Apadding%E5%9C%A8%E8%BE%B9%E6%A1%86%E5%86%85%EF%BC%8Cmargin%E5%9C%A8%E8%BE%B9%E6%A1%86%E5%A4%96"><span class="toc-number">10.</span> <span class="toc-text">不同padding：padding在边框内，margin在边框外</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%BC%B9%E6%80%A7%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="toc-number"></span> <span class="toc-text">2.弹性盒模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%8D%E6%8C%82%E4%B8%80%E7%AF%87%E5%BC%B9%E6%80%A7%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">再挂一篇弹性盒模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flex"><span class="toc-number">2.</span> <span class="toc-text">flex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-align-items%E8%AE%BE%E7%BD%AE%E7%BA%B5%E8%BD%B4%E6%8E%92%E5%88%97%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">使用 align-items设置纵轴排列方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%99%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AEflex%E5%8D%A0%E6%AF%94"><span class="toc-number">4.</span> <span class="toc-text">给元素设置flex占比</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%BC%B9%E6%80%A7%E7%9B%92%E6%A8%A1%E5%9E%8B-1-%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">盒子模型和弹性盒模型# 1.盒子模型基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%88%E6%98%AF%E5%81%B7%E5%81%B7%E5%BC%95%E7%94%A8%E5%88%AB%E4%BA%BA%E7%9A%84%E6%96%87%E7%AB%A0%E6%8C%82%E5%9C%A8%E5%BC%80%E5%A4%B4%EF%BC%8C%E5%BF%98%E8%AE%B0%E4%BA%86%E5%B0%B1%E7%9C%8B%E7%9C%8B%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">又是偷偷引用别人的文章挂在开头，忘记了就看看：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">盒子模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%BD%E5%BA%A6%E5%92%8C%E9%AB%98%E5%BA%A6"><span class="toc-number">4.</span> <span class="toc-text">宽度和高度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css%E9%87%8C%E7%9A%84width%E5%92%8Cheight%E6%8C%87%E5%A1%AB%E5%85%85%E4%BB%A5%E9%87%8C%E7%9A%84%E5%86%85%E5%AE%B9%E8%8C%83%E5%9B%B4%E5%85%83%E7%B4%A0%E5%AE%BD%E5%BA%A6-x3D-%E5%B7%A6%E8%BE%B9%E7%95%8C-%E5%B7%A6%E8%BE%B9%E6%A1%86-%E5%B7%A6%E5%A1%AB%E5%85%85-%E5%86%85%E5%AE%B9%E5%AE%BD%E5%BA%A6-%E5%8F%B3%E8%BE%B9%E7%95%8C-%E5%8F%B3%E8%BE%B9%E6%A1%86-%E5%8F%B3%E5%A1%AB%E5%85%85%E5%85%83%E7%B4%A0%E9%AB%98%E5%BA%A6%E5%90%8C%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">css里的width和height指填充以里的内容范围元素宽度&#x3D;左边界+左边框+左填充+内容宽度+右边界+右边框+右填充元素高度同理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E8%89%B2"><span class="toc-number">6.</span> <span class="toc-text">背景色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8border%E4%B8%BA%E7%9B%92%E5%AD%90%E5%8A%A0%E8%BE%B9%E6%A1%86%EF%BC%88%E5%8D%B3%E5%9B%B4%E7%BB%95%E7%9D%80%E5%86%85%E5%AE%B9%E5%8F%8A%E8%A1%A5%E7%99%BD%E7%9A%84%E7%BA%BF%EF%BC%8C%E5%8F%AF%E8%AE%BE%E7%BD%AE%E5%85%B6%E7%B2%97%E7%BB%86%EF%BC%8C%E6%A0%B7%E5%BC%8F%E5%92%8C%E8%BE%B9%E6%A1%86%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">使用border为盒子加边框（即围绕着内容及补白的线，可设置其粗细，样式和边框）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8padding%E4%B8%BA%E7%9B%92%E5%AD%90%E8%AE%BE%E7%BD%AE%E5%86%85%E8%BE%B9%E8%B7%9D%EF%BC%88%E5%A1%AB%E5%85%85%EF%BC%89"><span class="toc-number">8.</span> <span class="toc-text">使用padding为盒子设置内边距（填充）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8margin%E4%B8%BA%E7%9B%92%E5%AD%90%E8%AE%BE%E7%BD%AE%E5%A4%96%E8%BE%B9%E8%B7%9D-%E9%A1%BA%E5%BA%8F%EF%BC%9A%E4%B8%8A%E5%8F%B3%E4%B8%8B%E5%B7%A6%EF%BC%88%E9%A1%BA%E6%97%B6%E9%92%88%E5%90%8Cpadding%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">使用margin为盒子设置外边距 顺序：上右下左（顺时针同padding）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E5%90%8Cpadding%EF%BC%9Apadding%E5%9C%A8%E8%BE%B9%E6%A1%86%E5%86%85%EF%BC%8Cmargin%E5%9C%A8%E8%BE%B9%E6%A1%86%E5%A4%96"><span class="toc-number">10.</span> <span class="toc-text">不同padding：padding在边框内，margin在边框外</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E5%BC%B9%E6%80%A7%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="toc-number"></span> <span class="toc-text">2.弹性盒模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%8D%E6%8C%82%E4%B8%80%E7%AF%87%E5%BC%B9%E6%80%A7%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">再挂一篇弹性盒模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#flex"><span class="toc-number">2.</span> <span class="toc-text">flex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-align-items%E8%AE%BE%E7%BD%AE%E7%BA%B5%E8%BD%B4%E6%8E%92%E5%88%97%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">使用 align-items设置纵轴排列方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%99%E5%85%83%E7%B4%A0%E8%AE%BE%E7%BD%AEflex%E5%8D%A0%E6%AF%94"><span class="toc-number">4.</span> <span class="toc-text">给元素设置flex占比</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -550,6 +565,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">建站</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">领航作业</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">前端css</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
