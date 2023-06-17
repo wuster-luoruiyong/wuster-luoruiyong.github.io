@@ -16,7 +16,7 @@
 <meta property="og:description" content="C++学习笔记（wust学习通）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-05-17T08:03:05.216Z">
-<meta property="article:modified_time" content="2023-06-11T05:00:04.859Z">
+<meta property="article:modified_time" content="2023-06-17T16:27:46.257Z">
 <meta property="article:author" content="lllry">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -454,7 +454,7 @@
 <p>1.对象名.</p>
 <p>2.类名::</p>
 <p><strong>管理静态数据成员</strong>，完成对静态数据成员的封装；</p>
-<p>不依赖任何对象，可以在main函数中通过类名调用；</p>
+<p><strong>不依赖任何对象，可以在main函数中通过类名调用</strong>；</p>
 <p>只能访问该类静态数据成员；</p>
 <p>若要访问非静态数据成员，须通过参数传递对象名，然后通过对象名访问非静态数据成员；</p>
 <h2 id="3-类的友元"><a href="#3-类的友元" class="headerlink" title="3.类的友元"></a>3.类的友元</h2><p>主动声明拿些其他类或函数是它的朋友,进而给他们提供对本类的访问特许权;</p>
@@ -525,6 +525,321 @@
 <p>通过编译预处理可以实现避免重复定义;</p>
 <p>#ifndef HEAD_H</p>
 <p>#define HEAD_H</p>
+<h1 id="五-数组指针和字符串"><a href="#五-数组指针和字符串" class="headerlink" title="五.数组指针和字符串"></a>五.数组指针和字符串</h1><h2 id="1-对象数组和对象指针"><a href="#1-对象数组和对象指针" class="headerlink" title="1.对象数组和对象指针"></a>1.对象数组和对象指针</h2><h3 id="1）对象数组"><a href="#1）对象数组" class="headerlink" title="1）对象数组"></a>1）对象数组</h3><p><strong>数组的类型是自定义类型，对象数组的元素是自定义类</strong></p>
+<p><strong>声明方式：</strong></p>
+<p>类名 数组名[常量表达式];</p>
+<p>Point pt[10];</p>
+<p><strong>访问方法：下标</strong></p>
+<p>数组名[下标表达式].成员名</p>
+<p>pt[1].print();</p>
+<p><strong>对象数组初始化：</strong></p>
+<p>每个元素对象被创建时，都会自动调用该类的构造函数</p>
+<h3 id="2）对象指针"><a href="#2）对象指针" class="headerlink" title="2）对象指针"></a>2）对象指针</h3><p> 用于存放对象地址的变量</p>
+<p><strong>声明形式：</strong></p>
+<p>类名 *对象指针名；</p>
+<p>Point *ptr；</p>
+<p>ptr&#x3D;&amp;A；</p>
+<p><strong>通过指针访问对象成员：</strong></p>
+<p>ptr-&gt;getX()；</p>
+<p>等价于：</p>
+<p>（*ptr）.getX();</p>
+<p><strong>注意：</strong>对象指针使用前先<strong>初始化</strong></p>
+<h3 id="3）this指针"><a href="#3）this指针" class="headerlink" title="3）this指针"></a>3）this指针</h3><p>类对象维护自己的状态变量，同一个类的对象只有一个成员函数的拷贝</p>
+<p><strong>成员函数被调用时如何访问对象变量：</strong></p>
+<p><strong>this指针</strong></p>
+<p>隐含于每个类的非静态成员函数中，包括构造函数和析构函数；</p>
+<p>this指针指向正在被成员函数操作的对象，是一个指针常量；</p>
+<p>每次调用成员函数时，对象的this指针作为隐藏成员传递给成员函数；</p>
+<p>对于常成员函数，this是一个指向常量的指针常量：</p>
+<p>constX *const</p>
+<p><strong>主要有俩种this指针引用对象成员的情况：</strong></p>
+<p>1）变量同名，用this指针澄清所指的变量：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> Point：：Move（<span class="type">int</span> x,<span class="type">int</span> y）</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;x=x;</span><br><span class="line">    <span class="keyword">this</span>-&gt;y=y;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<p>2)要返回传送到函数的对象时：</p>
+<p>return *this；</p>
+<p>标识正在调用该函数的目的对象；</p>
+<h3 id="4）指向类的静态非公有数据成员和函数的指针"><a href="#4）指向类的静态非公有数据成员和函数的指针" class="headerlink" title="4）指向类的静态非公有数据成员和函数的指针"></a>4）指向类的静态非公有数据成员和函数的指针</h3><p><strong>声明方式：</strong></p>
+<p>*变量名&#x3D;某个数据成员；</p>
+<p>返回值 （*函数名）（）&#x3D;某个函数；</p>
+<h2 id="2-动态内存分配"><a href="#2-动态内存分配" class="headerlink" title="2.动态内存分配"></a>2.动态内存分配</h2><p>程序在运行时得到内存</p>
+<p>必须<strong>显式的释放</strong>；</p>
+<p>申请和释放的内存空间：堆</p>
+<p>new：</p>
+<p>类型 指针变量&#x3D; new 类型（初始化列表）；</p>
+<p>*<em>int <em>pn2&#x3D;new int（2）；</em></em></p>
+<p>创建动态数组：</p>
+<p>int *p1&#x3D;new int[5]（）</p>
+<p>int *p1&#x3D;new int[5]{1，2，3，4，5}</p>
+<p>动态分配一个数组，会返回一个元素类型的指针；</p>
+<p>释放动态数组：</p>
+<p><strong>delete []p1;逆序销毁数组中元素，并释放该内存；</strong></p>
+<p><strong>注意</strong>：</p>
+<p>等号左边变量的类型应与右边变量类型相匹配；</p>
+<p>若创建类对象，则调用该类对象构造函数；</p>
+<p>new，delete配对，避免内存泄露、重复释放；</p>
+<p>delete只能释放new创建的；</p>
+<p>不能用sizeof；</p>
+<h2 id="3-深复制和浅复制"><a href="#3-深复制和浅复制" class="headerlink" title="3.深复制和浅复制"></a>3.深复制和浅复制</h2><p><strong>1.类中仅含有简单变量或对象成员，没有指针数据成员：</strong></p>
+<p>1）系统提供默认的复制构造函数和赋值运算符重载函数都是浅复制；</p>
+<p>2）该方式通过memcpy函数将远视力的数据复制到目标实例占有的一片内存空间；</p>
+<p>3）默认的浅复制方式时安全的；</p>
+<p><strong>2.类中含有指针成员：</strong></p>
+<p>1）数据存放在堆上，如果浅复制，则仅仅是指针的复制；</p>
+<p>2）一个空间被多个指针指向，多次析构，说明浅复制不再胜任；</p>
+<p>默认的复制构造函数是简单的等位拷贝，也就是俩个指针指向同一空间实现的值相等；</p>
+<p><strong>深复制：</strong></p>
+<p>自己编写复制构造函数，为目的对象开辟新的空间；</p>
+<p>还要重载赋值运算符，实现对象间的赋值；</p>
+<h2 id="4-string类"><a href="#4-string类" class="headerlink" title="4.string类"></a>4.string类</h2><p>含<string>头文件</p>
+<p><strong>构造string类对象：</strong></p>
+<p>string s1；</p>
+<p>string s2（“friday”）；</p>
+<p>string s3（s2,0,3)&#x2F;&#x2F;s2从第0个字符开始三个字符；</p>
+<p>string s4(“friday”,3)&#x2F;前三个字符构造；</p>
+<p>string s5(10,’A’)&#x2F;&#x2F;一个字符重复n次；</p>
+<p><strong>读写string类对象：</strong></p>
+<p>io运算符；</p>
+<p>getline（cin，str）&#x2F;&#x2F;ctrl+z；\n；达到最大输入长度；</p>
+<p>c++重载了string类的运算符，使之类同于普通数据可以进行一系列操作，size（）求长度；</p>
+<p><strong>比较规则</strong>：</p>
+<p>1.s1和s2长度相同，且所有字符完全相同，则s1&#x3D;&#x3D;s2为真；</p>
+<p>2.s1和s2所有字符不完全相同，则比较第一对不相同字符的ASCLL码，较小字符所在的串为较小的串；</p>
+<p>3.如果s1长度n1小于s2的长度n2，且俩字符串前n1个字符串完全相同，则s1&lt;s2;</p>
+<p><strong>一些有用的函数：</strong></p>
+<p>1）s.at(0)&#x3D;’H’;at访问下标，可以判断是否越界；</p>
+<p>2）size（）求长度；</p>
+<p>3）bool empty（）判断空；</p>
+<p>4）string append（const char*s）相当于+&#x3D;；</p>
+<p>5）string assign（const char*s）相当于&#x3D;</p>
+<p>6）string&amp;  insert（unsigned int p0，const char*s）插入s到p0前；</p>
+<p>7）string substr（unsigned int p0，const int n）const；取p0</p>
+<p>前n个值作为返回对象；</p>
+<p>8）unsign int find（const string &amp;str）const；找str第一次出现的位置；</p>
+<p>9）void swap（string&amp; str）；交换；</p>
+<h1 id="六-继承与派生"><a href="#六-继承与派生" class="headerlink" title="六.继承与派生"></a>六.继承与派生</h1><p>代码重用和扩展</p>
+<h2 id="1-类的继承与派生"><a href="#1-类的继承与派生" class="headerlink" title="1.类的继承与派生"></a>1.类的继承与派生</h2><p>派生类的定义：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class 派生类名：继承方式 基类1，继承方式 基类2...</span><br><span class="line">&#123;</span><br><span class="line">   派生类成员说明；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>单继承、多继承；</p>
+<p>可以新增成员来增加新的属性和功能；</p>
+<p><strong>生成过程</strong>：</p>
+<p>吸收基类成员、改造基类成员（访问控制）、添加新成员（构造、析构）</p>
+<h2 id="2-访问控制"><a href="#2-访问控制" class="headerlink" title="2.访问控制"></a>2.访问控制</h2><p><strong>成员的存取控制</strong>：</p>
+<table>
+<thead>
+<tr>
+<th align="center">继承方式</th>
+<th align="center">结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public</td>
+<td align="center">私有变不可访问，其他不变</td>
+</tr>
+<tr>
+<td align="center">protected</td>
+<td align="center">公有和保护都变成保护，私有变不可访问</td>
+</tr>
+<tr>
+<td align="center">private</td>
+<td align="center">公有和保护变成私有，私有变不可访问</td>
+</tr>
+</tbody></table>
+<p>可通过继承的公有成员函数访问父类的私有成员；</p>
+<h2 id="3-类型兼容规则"><a href="#3-类型兼容规则" class="headerlink" title="3.类型兼容规则"></a>3.类型兼容规则</h2><p>在需要基类对象的任何地方，都可以使用公有派生类的对象来<strong>替代</strong>；</p>
+<p>通过公有继承派生类得到了基类除构造、析构函数之外的所有成员；</p>
+<p><strong>兼容规则中所指的替代包括：</strong></p>
+<p>1）派生类对象可以隐含转换为基类对象：b1&#x3D;d1，即用派生类对象中从基类继承来的成员，逐个赋值给基类对象成员（新增成员无法赋值）；</p>
+<p>2）派生类对象可以初始化基类的引用：B &amp;rb&#x3D;d1；</p>
+<p>3）派生类的指针可以隐含转换为基类的指针：pb1&#x3D;&amp;d1；</p>
+<p>视频中所举例子应用到了兼容性规则3），可以把b2给基类ptr指针，再用ptr调用继承下来但被隐藏的display函数</p>
+<h2 id="4-派生类的构造和析构函数"><a href="#4-派生类的构造和析构函数" class="headerlink" title="4.派生类的构造和析构函数"></a>4.派生类的构造和析构函数</h2><p>派生类的对象：</p>
+<p>·使用前必须初始化，派生类的成员对象是由所有基类的成员对象与派生类的成员对象共同组成，<strong>构造派生类对象时，要对基类的对象成员和新增对象成员初始化</strong>；</p>
+<p>·<strong>基类的构造函数不会继承</strong>，需要给派生类增加新的构造函数，<strong>派生对基类初始化，需要调用基类构造函数，派生类构造函数需要合适的初值作为参数</strong></p>
+<p><strong>构造步骤：</strong></p>
+<p>♦调用基类的构造函数来初始化他们的数据成员；</p>
+<p>♦构造函数初始化列表初始化派生类新增成员对象；</p>
+<p>♦执行派生类构造函数函数体；</p>
+<p><strong>派生类：</strong></p>
+<p><strong>语法形式</strong>:</p>
+<p>派生类名：：派生类名（参数表）：基类名1（基类1初始化参数表）…成员对象名1（成员对象1初始化参数表）…</p>
+<p>{派生类构造函数其他操作}；</p>
+<p><strong>一个类有多个基类，对于所有需要给与参数初始化的基类，如果不是使用默认构造，必须显式的给出基类名和参数表；</strong></p>
+<p><strong>什么时候要声明派生类的构造函数？</strong></p>
+<p>对基类初始化需要调用基类的带有形参表的构造函数，提供一个将参数传递给基类构造函数的途径，保证在基类进行初始化时，能够获得必要的数据；</p>
+<p><strong>步骤：</strong></p>
+<p>先基类初始化，按照初始化列表从左到右；</p>
+<p>然后类的新增成员对象初始化；</p>
+<p>最后函数体；</p>
+<p><strong>析构函数与此相反</strong></p>
+<h2 id="5-派生类成员的标识与访问"><a href="#5-派生类成员的标识与访问" class="headerlink" title="5.派生类成员的标识与访问"></a>5.派生类成员的标识与访问</h2><p>作用域分辨符**<u>：：</u>**</p>
+<p><strong>可见性原则：</strong></p>
+<p>♦如果在俩个或多个具有包含关系的作用域，外层声明了一个同名标识符，内层没有再次声明同名标识符，外层标识符在内层仍然可见；</p>
+<p>♦如果在内层声明了同名标识符，则外层标识符在内层不可见，这时称内层标识符隐藏了外层同名标识符，这种现象称为隐藏规则；</p>
+<p>简而言之：内隐藏外，内可见外；</p>
+<p>对于<strong>多继承</strong>：</p>
+<p>派生类成员将隐藏所有基类的同名成员；</p>
+<p><strong>使用“对象名.成员名”和“对象指针-&gt;成员名”</strong></p>
+<p>如果派生类没有声明同名成员，上述俩种方法无法唯一标识派生类继承的成员；此时只有使用：：</p>
+<p><strong>如果出现多继承且一个父类是另一个父类的父类：</strong></p>
+<p>派生类中也会出现同名（有多个同名副本），必须用直接基类，使用作用域分辨符来限定；</p>
+<p>更好的解决方案<strong>虚基类</strong>：</p>
+<p>在派生类的对象中，同名数据成员在内存中有多个副本，同一个函数名有多个映射；此时，<strong>将共同基类设置为虚基类</strong>（virtual），这样从不同路径继承过来的同名数据成员，在函数中就只有一个副本，同一个函数名也只有一个映射；</p>
+<p><strong>注意：</strong></p>
+<p>如果虚基类声明有非默认形式及带形参的构造函数，并且没有声明默认形式的构造函数，那么在整个继承关系中，直接或间接继承虚基类的所有派生类，都必须在构造函数的成员初始化列表中列出对虚基类的初始化；</p>
+<p>不用担心会对虚基类多次初始化，C++编译器只会调用最远派生类的构造函数；</p>
+<h1 id="七-多态性"><a href="#七-多态性" class="headerlink" title="七.多态性"></a>七.多态性</h1><h2 id="1-多态性概述"><a href="#1-多态性概述" class="headerlink" title="1.多态性概述"></a>1.多态性概述</h2><p>多种状态</p>
+<p><strong>绑定</strong>：</p>
+<p>♦是计算机程序自身彼此关联的过程；</p>
+<p>♦是把一个标识符名和一个存储地址联系在一起的过程；</p>
+<p>♦是把一条消息和一个对象的方法相结合的过程；</p>
+<p><strong>函数重载的问题：</strong>是一种绑定；</p>
+<p><strong>多态分类</strong>：</p>
+<p>静态多态：编译时的多态，在编译阶段就完成了（函数重载、运算符重载）；</p>
+<p>动态多态：运行时的多态，等到运行时才将标识符和相应函数代码结合；（虚函数）；</p>
+<h2 id="2-双目运算符重载为成员函数"><a href="#2-双目运算符重载为成员函数" class="headerlink" title="2.双目运算符重载为成员函数"></a>2.双目运算符重载为成员函数</h2><p>为什么要重载：将自定义类型进行运算；</p>
+<p><strong>基本语法规则：</strong></p>
+<p>1.只能存在C++已有的运算符；</p>
+<p>2.以下运算符<strong>不能重载</strong>：**.  .*  -&gt;* ::  sizeof  ?:**</p>
+<p>类属关系运算符、成员指针运算符、作用域分辨符、sizeof、三目运算符；</p>
+<p>3.<strong>重载后运算符优先级不变；</strong></p>
+<p><strong>定义形式</strong>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">返回类型 <span class="keyword">operator</span> 运算符(形参)</span><br><span class="line">&#123;</span><br><span class="line">  ......</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">例：</span><br><span class="line">Complex <span class="keyword">operator</span> +(Complex &amp;c)<span class="comment">//情况一，类的成员函数</span></span><br><span class="line">&#123;...&#125;</span><br><span class="line">Complex <span class="keyword">operator</span> +(Complex &amp;c1，Complex &amp;c2)<span class="comment">//情况二，非成员函数（可以是友元函数）</span></span><br><span class="line">&#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<p>重载的俩种形式如上俩种类型（访问私有数据可以通过友元和公有接口）；</p>
+<p><strong>重载的方法</strong>：</p>
+<p>具体以复数类举例（见七.3，九分钟左右）；</p>
+<h2 id="3-单目运算符重载为成员函数"><a href="#3-单目运算符重载为成员函数" class="headerlink" title="3.单目运算符重载为成员函数"></a>3.单目运算符重载为成员函数</h2><p><strong>重载格式</strong>：</p>
+<p>一般都是<strong>前置运算符</strong>，即运算符在前，操作数在后（如-a）负号：</p>
+<p>此时直接重载为成员函数，不需要形参；</p>
+<p><strong>但是++、–既可能前置有可能后置，如何区分？</strong></p>
+<p>C++规定，在参数表中增加<strong>int</strong>这个标识符来<strong>区分</strong>；<strong>注意，int纯粹是为了区分，并不代表参数是int型，带有int参数时是后置形式</strong>；</p>
+<p>例子（重载为成员函数）：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Obj <span class="keyword">operator</span> U（）；<span class="comment">//前置单目</span></span><br><span class="line">Obj <span class="keyword">operator</span> U（<span class="type">int</span>）<span class="comment">//后置单目</span></span><br></pre></td></tr></table></figure>
+
+<p>这里举例复数类负号重载、时钟类前、后置++重载（七.4 四分钟左右）；</p>
+<p><strong>这里后置++方法：</strong></p>
+<p>先设置同类old储存当前值（*this）；</p>
+<p>++（*this）；</p>
+<p>再返回old；</p>
+<p>**最好是直接调用前置++**，可以避免出错；</p>
+<h2 id="4-运算符重载为非成员函数"><a href="#4-运算符重载为非成员函数" class="headerlink" title="4.运算符重载为非成员函数"></a>4.运算符重载为非成员函数</h2><p><strong>使用情境：</strong></p>
+<p>左操作数不是本类对象（实数加复数）；</p>
+<p>左操作数不是程序员自定的类的对象（io）；</p>
+<p><strong>具体语法：</strong></p>
+<p>要列出所有操作数；</p>
+<p>后置++、–，操作数个数，形参列表中要增加一个int；</p>
+<p>操作数至少有一个是自定义类型；</p>
+<p>在运算符重载函数中可能需要操作某个类对象的私有成员时，可以将此函数声明为该类友元（或利用公有接口，但友元效率更高）；</p>
+<p><strong>重载插入和提取运算符（友元）：</strong></p>
+<p>举例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ostream &amp;<span class="keyword">operator</span> &lt;&lt; (ostream &amp;out,complex &amp;c)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    out&lt;&lt;c.real&lt;&lt;c.img&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：</p>
+<p>返回值必须是ostream对象的引用，因为要求重载后级连的输出，即：多个对象输出，可直接接连输出，返回值作为左值继续参与下一个运算，实现要求；</p>
+<p><strong>只能重载为成员函数：</strong></p>
+<p>&#x3D;、（）、[]、-&gt;</p>
+<p><strong>只能重载为非成员函数：</strong></p>
+<p>&lt;&lt;、&gt;&gt;</p>
+<h2 id="5-程序实例-1"><a href="#5-程序实例-1" class="headerlink" title="5.程序实例"></a>5.程序实例</h2><p>1）重载逻辑非“！”</p>
+<p>2）重载赋值“&#x3D;”  深复制和浅赋值</p>
+<p><strong>如何实现深复制：</strong></p>
+<p>1.检查自赋值；</p>
+<p>2.释放原有空间（当原数据不为空）；</p>
+<p>3.分配新空间；</p>
+<p>4.复制内容；</p>
+<p>5.返回*this；</p>
+<p><strong>几点关键理解：</strong></p>
+<p>1：避免自赋值（提高效率；防止是指针时出错），一般通过<strong>比较赋值者与被赋值者的地址是否相同</strong>；</p>
+<p>5：被赋值的引用，即*this：</p>
+<p>♦避免一次拷贝，提高了效率；</p>
+<p>♦可以实现连续赋值，类似a&#x3D;b&#x3D;c；</p>
+<p>如果不返回被赋值者的引用而是返回值类型，调用重载函数后将会进行一次拷贝，<strong>返回一个未命名的副本（匿名对象）</strong>，<strong>而C++规定这种副本为<u>右值</u>，这就导致不能进行类似a&#x3D;b&#x3D;c连续运算</strong>；</p>
+<h2 id="6-虚函数"><a href="#6-虚函数" class="headerlink" title="6.虚函数"></a>6.虚函数</h2><p>1.在函数前加上关键字<strong>virtual</strong>（<strong>只能出现在类定义的函数原型声明，而不能在成员函数实现时添加</strong>）；</p>
+<p>2.虚函数是<strong>运行多态</strong>，即动态多态的基础，它必须是动态绑定的函数，<strong>不能是静态</strong>的成员函数；虚函数<strong>应该属于对象而不是整个类</strong>，他需要在运行时用指针定位到它指向的对象是谁，然后决定调用哪个函数；</p>
+<p>3.虚函数具有继承性；</p>
+<p>4.虚函数最好不要设为内联函数（内联编译时就处理了，是静态）；</p>
+<p>5.<strong>调用方式</strong>：通过<strong>基类指针或引用</strong>，执行时会<strong>根据指针指向&#x2F;引用的对象的类，决定调用哪个函数；</strong>（这一节有程序的演示）</p>
+<p><strong>动态多态的条件和实现过程：</strong></p>
+<p>♦将派生类对象赋值给基类指针（或引用）；</p>
+<p>♦通过基类指针（或引用）调用虚函数；</p>
+<p>♦根据传递的派生类的指针（或引用）的不同实现访问的多态性；</p>
+<p><strong>把派生类对象地址传给基类指针，此时实现基类指针指向派生类，如何实现基类虚函数调用？</strong></p>
+<p>♦使用::</p>
+<p>♦ptr-&gt;A::display()&#x2F;&#x2F;仍指向基类函数</p>
+<p><strong>对象切片</strong>：派生类对象复制构造基类对象的行为；</p>
+<p>此时.display（）不需要动态绑定，对象类型名明确；</p>
+<p><strong>虚析构函数：</strong></p>
+<p>派生类通过基类指针调用对象的析构函数来delete动态开辟的内存，就需要让基类的析构函数称为虚函数，否早会产生不确定的后果。</p>
+<p>1，实现指针引用时动态绑定，实现运行时多态</p>
+<p>2，保证使用基类基类类型的指针能调用适当的析构函数针对不同对象进行清理工作；</p>
+<h2 id="7-抽象类"><a href="#7-抽象类" class="headerlink" title="7.抽象类"></a>7.抽象类</h2><p><strong>纯虚函数</strong>：函数由于信息不够具体而无法实现；</p>
+<p>声明形式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">virtual</span> 函数类型 函数名 （参数表）=<span class="number">0</span></span><br><span class="line"><span class="keyword">virtual</span> <span class="type">void</span> fun（）=<span class="number">0</span>；</span><br></pre></td></tr></table></figure>
+
+<p>纯虚函数时一类在基类中声明的虚函数，无法具体实现（在基类中定义的信息不够具体，导致这个函数没法规定具体算法）；</p>
+<p>声明为纯虚函数，基类可用不再给出函数体；</p>
+<p><strong>对于普通函数</strong>：纯虚函数的函数体由派生类给出（若基类给出实现，则必须由派生类覆盖）；</p>
+<p><strong>对于析构函数</strong>：必须在基类给出实现；</p>
+<p><strong>抽象类：</strong>带有纯虚函数的类，不能产生实例；</p>
+<p><strong>作用：</strong></p>
+<p>♦规定对外接口的统一形式：</p>
+<p>可以使我们将基类对象和各级不同派生类的对象都按照统一方式进行处理；</p>
+<p><strong>如果没有实现纯虚函数，派生类继续作为抽象类，没法定义对象；实现了纯虚函数，有了函数体，就可以定义对象；这说明抽象类是作为基类使用的，是不能够定义对象的；</strong>不能传对象，可以传引用；</p>
+<p><u><strong>动态的多态的是把不同的派生类的对象传递给了基类的指针</strong>；</u></p>
+<h1 id="八-模板"><a href="#八-模板" class="headerlink" title="八.模板"></a>八.模板</h1><p>♦使用一种通用的方法来设计函数或者类；</p>
+<p>♦它不具体指定操作对象的数据类型，<strong>通过使用可变的数据类型来使使用可变的数据类型来时代码适用于不同的数据类型</strong>；</p>
+<p>♦减少重复代码编写，实现代码重用；</p>
+<p>我把它看作重载的进阶；</p>
+<h2 id="1-函数模板"><a href="#1-函数模板" class="headerlink" title="1.函数模板"></a>1.函数模板</h2><p>定义：</p>
+<p>♦由模板参数说明和函数定义组成；</p>
+<p>♦模板类型参数说明由template开头，后面接尖括号括起来的“模板参数表”；</p>
+<p>♦模板参数表可以包含逗号隔开的多个模板参数；</p>
+<p>工作原理：</p>
+<p>只是抽象说明，实例化后称为模板函数才能执行；</p>
+<p>例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function">T <span class="title">Max</span><span class="params">(T a,T b)</span></span>&#123;<span class="keyword">return</span> a&gt;b?a:b;&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> x,y;</span><br><span class="line">    cin&gt;&gt;X&gt;&gt;y;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">Max</span>(x,y);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>类型参数class可以替换为typename替代；</p>
+</li>
+<li><p>template语句与函数模板定义语句见不允许有其他语句；</p>
+</li>
+<li><p>函数模板实例化可以隐式和显式实例化；</p>
+</li>
+<li><p>模板参数表中可以出现非模板类型参数，直接接受一个由“类型说明符”所规定的常量作为其参数；</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">OutputArray</span>&lt;<span class="type">int</span>,<span class="number">10</span>&gt;(a);</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T,<span class="type">int</span> count&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">OutputArray</span><span class="params">(<span class="type">const</span> T *array)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;count;&lt;i++)cout&lt;&lt;array[i]&lt;&lt;<span class="string">&quot;&quot;</span>;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>5.函数模板可以重载；<strong>形参表或类型参数表不同；</strong></p>
+<p>6.<strong>函数模板和函数的优先顺序</strong>：</p>
+<p>在有多个函数和函数模板名字相同的情况下，编译器处理一条函数调用语句的顺序：</p>
+<p>先找参数完全匹配的普通函数（非模板函数）；</p>
+<p>再找参数完全匹配的模板参数；</p>
+<p>再找实参经过自动类型转换后能够匹配的普通函数；</p>
+<p>上面都找不到就报错；</p>
+</li>
+</ol>
+<h2 id="2-类模板"><a href="#2-类模板" class="headerlink" title="2.类模板"></a>2.类模板</h2><p>主要用于数据存储类或容器类或容器类，类的数据类型和算法不受所包含元素影响；</p>
+<p>举例；对动态数组类抽象；</p>
+<p><strong>定义：</strong></p>
+<p>类似于函数模板。</p>
+<p>♦模板类型参数说明由template开头，后面接尖括号括起来的“模板参数表”，后面紧接类的定义；</p>
+<p>♦模板参数表和函数模板一样；</p>
+<p>♦类的定义中，成员数据和成员函数声明普通函数，只是涉及到数据类型的时候需要用到模板的类型参数；</p>
+<p><strong>再类模板外定义成员函数，格式：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;模板参数表&gt;</span><br><span class="line">返回值类型 类模板名&lt;模板参数标识符列表&gt;::成员函数(参数表)</span><br><span class="line">&#123;......&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>实例化：</strong></p>
+<p>类似于模板函数的显示实例化：</p>
+<p><strong>类模板名&lt;实际的模板类型参数表&gt;对象名；</strong>（八.2五分钟，注意外部函数定义方法）</p>
+<p>实例化：Pair&lt;string，int&gt;   s1(“tom”,10),s2(“mary”,11);</p>
+<p><strong>注意事项：</strong></p>
+<p>同一个类模板生成的若干模板类是<strong>相互不兼容</strong>的；</p>
+<p>函数模板可以作为类模板的成员；（实例见本节6：51）；</p>
+<p>类模板的“&lt;类型参数表&gt;”中<strong>可以出现非模板类型参数</strong>，实例化时，<strong>非模板类型参数必须是指定类型的常量值</strong>；</p>
 
       
 
@@ -708,7 +1023,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-C-%E7%AE%80%E5%8D%95%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">一.C++简单程序设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%89%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8F%91%E5%B1%95"><span class="toc-number">1.1.</span> <span class="toc-text">1）程序设计语言的发展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="toc-number">1.2.</span> <span class="toc-text">2）面向对象的语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%89%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.3.</span> <span class="toc-text">3）对象</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">二.函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="toc-number">2.1.</span> <span class="toc-text">1.函数的参数传递</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0"><span class="toc-number">2.2.</span> <span class="toc-text">2.内联函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%B8%A6%E9%BB%98%E8%AE%A4%E5%BD%A2%E5%8F%82%E5%80%BC%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">3.带默认形参值的函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD"><span class="toc-number">2.4.</span> <span class="toc-text">4.函数重载</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.</span> <span class="toc-text">三.类和对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E7%82%B9"><span class="toc-number">3.1.</span> <span class="toc-text">1.面向对象程序设计的基本特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%BC%89%E6%8A%BD%E8%B1%A1"><span class="toc-number">3.1.1.</span> <span class="toc-text">1）抽象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%BC%89%E5%B0%81%E8%A3%85"><span class="toc-number">3.1.2.</span> <span class="toc-text">2）封装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%EF%BC%89%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F"><span class="toc-number">3.1.3.</span> <span class="toc-text">3）继承与派生</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%EF%BC%89%E5%A4%9A%E6%80%81%E6%80%A7"><span class="toc-number">3.1.4.</span> <span class="toc-text">4）多态性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.2.</span> <span class="toc-text">2.类和对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0"><span class="toc-number">3.3.</span> <span class="toc-text">3.构造函数和析构函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%C2%B7-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="toc-number">3.3.1.</span> <span class="toc-text">· 构造函数：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%C2%B7-%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="toc-number">3.3.2.</span> <span class="toc-text">· 析构函数：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">3.4.</span> <span class="toc-text">4.复制构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B"><span class="toc-number">3.5.</span> <span class="toc-text">5.程序实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%B1%BB%E7%9A%84%E7%BB%84%E5%90%88"><span class="toc-number">3.6.</span> <span class="toc-text">6.类的组合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%BC%89%E7%BB%84%E5%90%88%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">3.6.1.</span> <span class="toc-text">1）组合类的构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%BC%89%E7%BB%84%E5%90%88%E7%B1%BB%E7%9A%84%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">3.6.2.</span> <span class="toc-text">2）组合类的复制构造函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B-%E6%95%B0%E6%8D%AE%E7%9A%84%E5%85%B1%E4%BA%AB%E4%B8%8E%E4%BF%9D%E6%8A%A4"><span class="toc-number">4.</span> <span class="toc-text">四.数据的共享与保护</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E7%94%9F%E5%AD%98%E6%9C%9F"><span class="toc-number">4.1.</span> <span class="toc-text">1.作用域和生存期</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%BC%89%E6%A0%87%E8%AF%86%E7%AC%A6%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">4.1.1.</span> <span class="toc-text">1）标识符的作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%BC%89%E6%A0%87%E8%AF%86%E7%AC%A6%E7%9A%84%E5%8F%AF%E8%A7%81%E6%80%A7"><span class="toc-number">4.1.2.</span> <span class="toc-text">2）标识符的可见性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%EF%BC%89%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%94%9F%E5%AD%98%E6%9C%9F"><span class="toc-number">4.1.3.</span> <span class="toc-text">3）对象的生存期</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%B1%BB%E7%9A%84%E9%9D%99%E6%80%81%E6%88%90%E5%91%98"><span class="toc-number">4.2.</span> <span class="toc-text">2.类的静态成员</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%9D%99%E6%80%81%E6%95%B0%E6%8D%AE%E6%88%90%E5%91%98"><span class="toc-number">4.2.1.</span> <span class="toc-text">1.静态数据成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">4.2.2.</span> <span class="toc-text">2.静态成员函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%B1%BB%E7%9A%84%E5%8F%8B%E5%85%83"><span class="toc-number">4.3.</span> <span class="toc-text">3.类的友元</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.1.</span> <span class="toc-text">1.友元函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%8B%E5%85%83%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.2.</span> <span class="toc-text">2.友元成员函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8F%8B%E5%85%83%E7%B1%BB"><span class="toc-number">4.3.3.</span> <span class="toc-text">3.友元类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE%E7%9A%84%E4%BF%9D%E6%8A%A4"><span class="toc-number">4.4.</span> <span class="toc-text">4.共享数据的保护</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B8%B8%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.4.1.</span> <span class="toc-text">1)常对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%B8%B8%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">4.4.2.</span> <span class="toc-text">2)常成员函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%B8%B8%E6%95%B0%E6%8D%AE%E6%88%90%E5%91%98"><span class="toc-number">4.4.3.</span> <span class="toc-text">3)常数据成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%B8%B8%E5%BC%95%E7%94%A8"><span class="toc-number">4.4.4.</span> <span class="toc-text">4)常引用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E5%92%8C%E7%BC%96%E8%AF%91%E9%A2%84%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4"><span class="toc-number">4.5.</span> <span class="toc-text">5.多文件结构和编译预处理命令</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-C-%E7%AE%80%E5%8D%95%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">一.C++简单程序设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%89%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8F%91%E5%B1%95"><span class="toc-number">1.1.</span> <span class="toc-text">1）程序设计语言的发展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="toc-number">1.2.</span> <span class="toc-text">2）面向对象的语言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%89%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.3.</span> <span class="toc-text">3）对象</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">二.函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="toc-number">2.1.</span> <span class="toc-text">1.函数的参数传递</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0"><span class="toc-number">2.2.</span> <span class="toc-text">2.内联函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%B8%A6%E9%BB%98%E8%AE%A4%E5%BD%A2%E5%8F%82%E5%80%BC%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">3.带默认形参值的函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD"><span class="toc-number">2.4.</span> <span class="toc-text">4.函数重载</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.</span> <span class="toc-text">三.类和对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%89%B9%E7%82%B9"><span class="toc-number">3.1.</span> <span class="toc-text">1.面向对象程序设计的基本特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%BC%89%E6%8A%BD%E8%B1%A1"><span class="toc-number">3.1.1.</span> <span class="toc-text">1）抽象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%BC%89%E5%B0%81%E8%A3%85"><span class="toc-number">3.1.2.</span> <span class="toc-text">2）封装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%EF%BC%89%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F"><span class="toc-number">3.1.3.</span> <span class="toc-text">3）继承与派生</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%EF%BC%89%E5%A4%9A%E6%80%81%E6%80%A7"><span class="toc-number">3.1.4.</span> <span class="toc-text">4）多态性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.2.</span> <span class="toc-text">2.类和对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0"><span class="toc-number">3.3.</span> <span class="toc-text">3.构造函数和析构函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%C2%B7-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="toc-number">3.3.1.</span> <span class="toc-text">· 构造函数：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%C2%B7-%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="toc-number">3.3.2.</span> <span class="toc-text">· 析构函数：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">3.4.</span> <span class="toc-text">4.复制构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B"><span class="toc-number">3.5.</span> <span class="toc-text">5.程序实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%B1%BB%E7%9A%84%E7%BB%84%E5%90%88"><span class="toc-number">3.6.</span> <span class="toc-text">6.类的组合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%BC%89%E7%BB%84%E5%90%88%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">3.6.1.</span> <span class="toc-text">1）组合类的构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%BC%89%E7%BB%84%E5%90%88%E7%B1%BB%E7%9A%84%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">3.6.2.</span> <span class="toc-text">2）组合类的复制构造函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B-%E6%95%B0%E6%8D%AE%E7%9A%84%E5%85%B1%E4%BA%AB%E4%B8%8E%E4%BF%9D%E6%8A%A4"><span class="toc-number">4.</span> <span class="toc-text">四.数据的共享与保护</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E7%94%9F%E5%AD%98%E6%9C%9F"><span class="toc-number">4.1.</span> <span class="toc-text">1.作用域和生存期</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%BC%89%E6%A0%87%E8%AF%86%E7%AC%A6%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">4.1.1.</span> <span class="toc-text">1）标识符的作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%BC%89%E6%A0%87%E8%AF%86%E7%AC%A6%E7%9A%84%E5%8F%AF%E8%A7%81%E6%80%A7"><span class="toc-number">4.1.2.</span> <span class="toc-text">2）标识符的可见性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%EF%BC%89%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%94%9F%E5%AD%98%E6%9C%9F"><span class="toc-number">4.1.3.</span> <span class="toc-text">3）对象的生存期</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%B1%BB%E7%9A%84%E9%9D%99%E6%80%81%E6%88%90%E5%91%98"><span class="toc-number">4.2.</span> <span class="toc-text">2.类的静态成员</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%9D%99%E6%80%81%E6%95%B0%E6%8D%AE%E6%88%90%E5%91%98"><span class="toc-number">4.2.1.</span> <span class="toc-text">1.静态数据成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%9D%99%E6%80%81%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">4.2.2.</span> <span class="toc-text">2.静态成员函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%B1%BB%E7%9A%84%E5%8F%8B%E5%85%83"><span class="toc-number">4.3.</span> <span class="toc-text">3.类的友元</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.1.</span> <span class="toc-text">1.友元函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%8B%E5%85%83%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.2.</span> <span class="toc-text">2.友元成员函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%8F%8B%E5%85%83%E7%B1%BB"><span class="toc-number">4.3.3.</span> <span class="toc-text">3.友元类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE%E7%9A%84%E4%BF%9D%E6%8A%A4"><span class="toc-number">4.4.</span> <span class="toc-text">4.共享数据的保护</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B8%B8%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.4.1.</span> <span class="toc-text">1)常对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%B8%B8%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">4.4.2.</span> <span class="toc-text">2)常成员函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%B8%B8%E6%95%B0%E6%8D%AE%E6%88%90%E5%91%98"><span class="toc-number">4.4.3.</span> <span class="toc-text">3)常数据成员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%B8%B8%E5%BC%95%E7%94%A8"><span class="toc-number">4.4.4.</span> <span class="toc-text">4)常引用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%A4%9A%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E5%92%8C%E7%BC%96%E8%AF%91%E9%A2%84%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4"><span class="toc-number">4.5.</span> <span class="toc-text">5.多文件结构和编译预处理命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94-%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">5.</span> <span class="toc-text">五.数组指针和字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84%E5%92%8C%E5%AF%B9%E8%B1%A1%E6%8C%87%E9%92%88"><span class="toc-number">5.1.</span> <span class="toc-text">1.对象数组和对象指针</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%BC%89%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84"><span class="toc-number">5.1.1.</span> <span class="toc-text">1）对象数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%BC%89%E5%AF%B9%E8%B1%A1%E6%8C%87%E9%92%88"><span class="toc-number">5.1.2.</span> <span class="toc-text">2）对象指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%EF%BC%89this%E6%8C%87%E9%92%88"><span class="toc-number">5.1.3.</span> <span class="toc-text">3）this指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%EF%BC%89%E6%8C%87%E5%90%91%E7%B1%BB%E7%9A%84%E9%9D%99%E6%80%81%E9%9D%9E%E5%85%AC%E6%9C%89%E6%95%B0%E6%8D%AE%E6%88%90%E5%91%98%E5%92%8C%E5%87%BD%E6%95%B0%E7%9A%84%E6%8C%87%E9%92%88"><span class="toc-number">5.1.4.</span> <span class="toc-text">4）指向类的静态非公有数据成员和函数的指针</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="toc-number">5.2.</span> <span class="toc-text">2.动态内存分配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%B7%B1%E5%A4%8D%E5%88%B6%E5%92%8C%E6%B5%85%E5%A4%8D%E5%88%B6"><span class="toc-number">5.3.</span> <span class="toc-text">3.深复制和浅复制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-string%E7%B1%BB"><span class="toc-number">5.4.</span> <span class="toc-text">4.string类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD-%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F"><span class="toc-number">6.</span> <span class="toc-text">六.继承与派生</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%B4%BE%E7%94%9F"><span class="toc-number">6.1.</span> <span class="toc-text">1.类的继承与派生</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6"><span class="toc-number">6.2.</span> <span class="toc-text">2.访问控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%B1%BB%E5%9E%8B%E5%85%BC%E5%AE%B9%E8%A7%84%E5%88%99"><span class="toc-number">6.3.</span> <span class="toc-text">3.类型兼容规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%B4%BE%E7%94%9F%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0"><span class="toc-number">6.4.</span> <span class="toc-text">4.派生类的构造和析构函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%B4%BE%E7%94%9F%E7%B1%BB%E6%88%90%E5%91%98%E7%9A%84%E6%A0%87%E8%AF%86%E4%B8%8E%E8%AE%BF%E9%97%AE"><span class="toc-number">6.5.</span> <span class="toc-text">5.派生类成员的标识与访问</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83-%E5%A4%9A%E6%80%81%E6%80%A7"><span class="toc-number">7.</span> <span class="toc-text">七.多态性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%A4%9A%E6%80%81%E6%80%A7%E6%A6%82%E8%BF%B0"><span class="toc-number">7.1.</span> <span class="toc-text">1.多态性概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%8F%8C%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B8%BA%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">7.2.</span> <span class="toc-text">2.双目运算符重载为成员函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%8D%95%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B8%BA%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">7.3.</span> <span class="toc-text">3.单目运算符重载为成员函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B8%BA%E9%9D%9E%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-number">7.4.</span> <span class="toc-text">4.运算符重载为非成员函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B-1"><span class="toc-number">7.5.</span> <span class="toc-text">5.程序实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E8%99%9A%E5%87%BD%E6%95%B0"><span class="toc-number">7.6.</span> <span class="toc-text">6.虚函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-number">7.7.</span> <span class="toc-text">7.抽象类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB-%E6%A8%A1%E6%9D%BF"><span class="toc-number">8.</span> <span class="toc-text">八.模板</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF"><span class="toc-number">8.1.</span> <span class="toc-text">1.函数模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%B1%BB%E6%A8%A1%E6%9D%BF"><span class="toc-number">8.2.</span> <span class="toc-text">2.类模板</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
